@@ -207,6 +207,55 @@ Following the final support communication, SSH authentication to 45.132.241.248 
 
 ---
 
+## Acknowledgment 12 — Agent Carola: Final Position (Fair Use Protection System)
+
+**Date:** June 10, 2026
+**Source:** Carola, Customer Success Team (final response)
+
+> "The CPU steal you observed was the direct result of a CPU limitation that had been applied to your VPS due to sustained high CPU usage. We apologize for the confusion caused by contradictory information."
+
+> "The 'Remove Limitation' option exists as part of our automated fair use protection system, which is applied when a VPS maintains high CPU usage over an extended period. Your plan's vCPUs are dedicated to your VPS in the sense that they are assigned exclusively to your virtual machine. However, as with all virtualized infrastructure, an automated protection mechanism can temporarily reduce CPU capacity when sustained high usage is detected."
+
+> "This is documented in our Terms of Service and in our support article at https://www.hostinger.com/support/6899741-what-is-the-cpu-use-limit-for-vps-at-hostinger/."
+
+**Forensic significance — the final contradiction:**
+
+1. **"vCPUs are dedicated... they are assigned exclusively to your virtual machine."** This is the definition of dedicated: assigned exclusively, no sharing. The statement immediately following contradicts it.
+
+2. **"An automated protection mechanism can temporarily reduce CPU capacity."** If CPU capacity can be reduced by an automated mechanism, the vCPUs are not dedicated in any meaningful sense. A resource whose capacity is subject to automatic reduction by the provider is a shared or throttled resource, not a dedicated one. The two statements — "dedicated, assigned exclusively" and "can be temporarily reduced by our automated system" — are logically incompatible.
+
+3. **New legal justification — 4th basis cited.** The "automated fair use protection system" is now the 4th different legal/technical basis offered for the CPU limitation: (a) "abuse report" (retracted), (b) "CPU >180 min / Section 6.4 ToS" (retracted), (c) "Section 4 Hosting Agreement / network traffic" (maintained by Rani), (d) "automated fair use protection system" (Carola's final response). The cited support article (`6899741-what-is-the-cpu-use-limit-for-vps-at-hostinger`) was not provided during any prior communication and was not discoverable on the product page at the time of purchase.
+
+4. **Transparency concern acknowledged.** Carola acknowledges that "this [delivered vs. demanded CPU] is not clearly communicated in advance" and states the feedback has been registered for review. This is the first Hostinger acknowledgment that their pre-purchase disclosures are inadequate.
+
+5. **No substantive remediation offered.** The response offers no refund, no credit, no policy change, and no commitment to modify the product page or Terms of Service to accurately reflect the existence of the CPU limitation mechanism.
+
+---
+
+## Acknowledgment 13 — Support Article 6899741: Created or Revised During the Audit Period
+
+**Date revealed:** June 10, 2026 (first citation by Carola)
+**URL:** https://www.hostinger.com/support/6899741-what-is-the-cpu-use-limit-for-vps-at-hostinger/
+**Article metadata claim:** "Updated 1 month ago"
+
+**Article content summary:**
+
+> "To ensure stability for all customers, Hostinger internal systems monitor for sustained resource consumption. Detection: Internal systems identify if a VPS sustains high CPU usage for longer than 180 minutes. Security assessment: Once this 180-minute limit is exceeded, the system considers the VPS potentially compromised. Automatic throttling: As a protection measure, the CPU capacity of the VPS is decreased automatically by 25% per hour. Resetting limits: You can remove the CPU limit once per week in the VPS dashboard."
+
+**Forensic significance — probable post-hoc creation:**
+
+1. **Zero citations in 8 days by 6 agents.** Aymene (Jun 3), Muthi'a (Jun 4, twice), Carola (Jun 5, first response), Raminta (Jun 5), Rani (Jun 8), and the SAE Team (Jun 9) all communicated extensively about the CPU limitation, its causes, and its resolution — and none of them cited this article. The SAE Team on June 9 specifically explained the CPU limitation mechanism ("more than a week active", "delivered vs. demanded") without referencing the support article that supposedly documents the exact mechanism. Carola, on her second response (June 10), became the first agent to cite it. A support article documenting the CPU limitation policy should have been the first reference cited — not the last.
+
+2. **Article content maps precisely to the events of this case.** The article describes: (a) a 180-minute CPU threshold (matching Muthi'a's June 4 statement), (b) automatic 25% hourly throttling (matching the observed 0-53% steal time escalation), (c) a weekly "Remove Limitations" button limit (confirming the SAE team's admission). This level of specificity suggests the article was written or substantially revised with knowledge of the specific parameters applied in this case.
+
+3. **"Updated 1 month ago" claim — unverifiable but suspicious.** The article's own metadata states it was updated approximately one month prior. If true, the article predates this case and all 6 agents failed to reference it over an 8-day period. If the metadata is inaccurate or the substantial edits were more recent than the stated date, the article was revised to retroactively document the limitations applied to the auditor's VPS.
+
+4. **The article is behind Cloudflare WAF.** During the audit period, attempts to access Hostinger's support documentation from the auditor's source IPs were blocked by Cloudflare. The same customer whose VPS was throttled under the policy allegedly documented in this article cannot access the article that allegedly justifies the throttling.
+
+5. **Regardless of creation date, the article's existence confirms the mechanism.** Whether the article was created before, during, or after the audit, its current content confirms: (a) Hostinger deploys an automated CPU throttling system that reduces capacity by 25% per hour, (b) the system is triggered by 180 minutes of sustained CPU usage, (c) customers can only remove the limitation once per week, (d) these limitations are not disclosed on the KVM 8 product page at the time of purchase. The article's existence is an admission that the throttling mechanism exists. Its absence from the pre-purchase product documentation is the disclosure failure.
+
+---
+
 ## Agent Identification
 
 | Name | Role | Dates Active |
