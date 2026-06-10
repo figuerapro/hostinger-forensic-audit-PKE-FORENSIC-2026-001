@@ -30,7 +30,7 @@ This document catalogs every piece of evidence referenced in the audit, with its
 | 18 | `02-timeline.md` | Chronological event log |
 | 19 | `03-infrastructure-analysis.md` | Sold vs. delivered analysis |
 | 20 | `04-benchmark-data.md` | All benchmark metrics |
-| 21 | `05-support-communications.md` | Support confessions verbatim |
+| 21 | `05-support-communications.md` | Support Acknowledgments verbatim |
 | 22 | `06-regulatory-violations.md` | Legal analysis |
 | 23 | `07-cloudflare-assessment.md` | Cloudflare dependency analysis |
 | 24 | `08-evidence-ledger.md` | This document |
@@ -91,7 +91,7 @@ with open('seals/MANIFEST.txt') as f:
 | 2026-06-03 17:20–18:19 | Disk write benchmark captured | Automated (dd + telemetry) |
 | 2026-06-03 19:28 | VPS suspended (custody interrupted) | Hostinger (administrative action) |
 | 2026-06-03 ~19:45 | Forensic report compiled | Auditor |
-| 2026-06-04 | Support confessions documented | Auditor (from chat transcripts) |
+| 2026-06-04 | Support Acknowledgments documented | Auditor (from chat transcripts) |
 | 2026-06-05 11:03 | Legal correspondence sent | Auditor |
 | 2026-06-05 ~20:38 | Cloudflare report compiled | Auditor |
 | 2026-06-07 | Audit package compiled and sealed | Auditor |
@@ -108,4 +108,5 @@ This audit was conducted under the following forensic investigation standards:
 - **NIST SP 800-86** — Guide to Integrating Forensic Techniques into Incident Response
 
 These standards govern the handling, preservation, and documentation of digital evidence to ensure its admissibility in legal and regulatory proceedings.
+
 

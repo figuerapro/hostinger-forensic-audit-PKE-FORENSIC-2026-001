@@ -1,10 +1,10 @@
 # 05 — Support Communications
 
-All communications documented below occurred between June 3 and June 5, 2026, through Hostinger's official support channels. Each confession has been preserved with its date, source, and literal transcription where available.
+All communications documented below occurred between June 3 and June 5, 2026, through Hostinger's official support channels. Each Acknowledgment has been preserved with its date, source, and literal transcription where available.
 
 ---
 
-## Confession 1 — Suspension Without Cause
+## Acknowledgment 1 — Suspension Without Cause
 
 **Date:** June 3, 2026, ~19:30 UTC  
 **Source:** Hostinger hPanel Management Interface  
@@ -16,7 +16,7 @@ The VPS was suspended without prior notification or documented justification. No
 
 ---
 
-## Confession 2 — Fabricated Abuse Report (and Retraction)
+## Acknowledgment 2 — Fabricated Abuse Report (and Retraction)
 
 **Date:** June 3, 2026, ~22:00 UTC  
 **Source:** Hostinger Support (chat)
@@ -32,7 +32,7 @@ The VPS was suspended without prior notification or documented justification. No
 
 ---
 
-## Confession 3 — Physical Environment is Shared
+## Acknowledgment 3 — Physical Environment is Shared
 
 **Date:** June 4, 2026, ~12:00 UTC  
 **Source:** Muthi'a, Customer Success Team
@@ -45,7 +45,7 @@ The VPS was suspended without prior notification or documented justification. No
 
 ---
 
-## Confession 4 — CPU at 100% for 24 Hours, RAM Killed by OOM
+## Acknowledgment 4 — CPU at 100% for 24 Hours, RAM Killed by OOM
 
 **Date:** June 4, 2026, ~12:00 UTC  
 **Source:** Muthi'a, Customer Success Team
@@ -60,7 +60,7 @@ The VPS was suspended without prior notification or documented justification. No
 
 ---
 
-## Confession 5 — CPU Limitation on "Dedicated" Resources
+## Acknowledgment 5 — CPU Limitation on "Dedicated" Resources
 
 **Date:** June 4, 2026, ~12:00 UTC  
 **Source:** Hostinger hPanel + Muthi'a, Customer Success Team
@@ -75,7 +75,7 @@ The VPS was suspended without prior notification or documented justification. No
 
 ---
 
-## Confession 6 — Forced System Restarts (4 in 48 Hours)
+## Acknowledgment 6 — Forced System Restarts (4 in 48 Hours)
 
 **Date:** June 3–4, 2026  
 **Source:** `/proc/stat`, `last reboot`, system availability logs
@@ -91,7 +91,7 @@ The VPS was suspended without prior notification or documented justification. No
 
 ---
 
-## Confession 7 — Root Credential Revocation
+## Acknowledgment 7 — Root Credential Revocation
 
 **Date:** June 5, 2026  
 **Source:** Direct access attempt
@@ -100,7 +100,7 @@ Following the final support communication, SSH authentication to 45.132.241.248 
 
 ---
 
-## Confession 8 — Port Exhaustion Confirmed
+## Acknowledgment 8 — Port Exhaustion Confirmed
 
 **Date:** June 3–5, 2026  
 **Source:** Hostinger internal diagnosis shared with customer
@@ -126,7 +126,7 @@ Following the final support communication, SSH authentication to 45.132.241.248 
 
 ---
 
-## Confession 9 — Agent Rani: Formal Defense / 6th Explanation
+## Acknowledgment 9 — Agent Rani: Formal Defense / 6th Explanation
 
 **Date:** June 8, 2026  
 **Source:** Rani, Customer Success Team (formally escalated response)
@@ -149,15 +149,75 @@ Following the final support communication, SSH authentication to 45.132.241.248 
 
 ---
 
+## Acknowledgment 10 — Agent Muthi'a: Third Retraction, New Legal Basis
+
+**Date:** June 9, 2026  
+**Source:** Muthi'a, Customer Success Team (formally escalated technical review)
+
+> "Part of the previously provided information was not accurate and I should have verified it more thoroughly before responding. After consulting with our technical team, here is the precise and complete information."
+
+> "The reference to CPU usage as the reason for suspension was an error on my part, and I apologize for the confusion this caused. The precise reason throughout our technical review has been the network traffic event of June 3."
+
+> "The traffic near zero observed on June 4 is a direct result of the suspension taking effect — not a contradiction of it."
+
+> "Regarding the QEMU disk and NVMe: what your guest OS reports as a QEMU virtual disk is the virtualization layer, not the physical hardware. In KVM environments, the guest OS always sees a virtual disk controller regardless of the physical backend; the physical backend is NVMe. These are two separate layers."
+
+> "Intel RAPL on AMD EPYC: This is standard QEMU/KVM behavior for compatibility purposes. It has no impact on your server's actual CPU performance."
+
+> "The suspension was based on Section 4 of the Hosting Agreement accepted at registration. Hostinger reserves the right to remove or suspend services when activities threaten the stability of our network."
+
+**Forensic significance — five findings:**
+
+1. **Third retraction.** Muthi'a explicitly admits that "the reference to CPU usage as the reason for suspension was an error on my part." This is now three separate occasions where a Hostinger agent has acknowledged providing incorrect information: (a) Aymene retracted the "abuse report" on June 3, (b) Muthi'a retracted "CPU >180 min" on June 9, (c) Muthi'a acknowledged "part of the previously provided information was not accurate." A support process with three documented retractions in 6 days cannot be considered reliable.
+
+2. **Third legal basis.** The suspension justification has shifted from "abuse report" → "CPU >180 min (Section 6.4 ToS)" → "network traffic (Section 4 Hosting Agreement)." This is now three different legal provisions cited for the same suspension — none of which were communicated to the customer at the time of the action.
+
+3. **Traffic timing correction — valid.** The customer's observation of "traffic near zero" on June 4 is correctly identified as occurring after the suspension. This is a valid correction to the audit's earlier analysis. The contradiction between Carola's "abnormal traffic" claim and Muthi'a's "traffic nearly zero" observation is resolved: the zero traffic was a consequence of the suspension, not evidence contradicting the cause.
+
+4. **NVMe claim — unverifiable.** The assertion that "the physical backend is NVMe" cannot be reconciled with the sustained write benchmark of 108.7 MB/s over 59 minutes and 376 GB. If the backend is NVMe, the virtualization layer is reducing 96.4% of the storage performance — which contradicts the product page's representation of NVMe-grade storage. A customer purchasing "400 GB NVMe" has no way to distinguish between "NVMe backend with catastrophic virtualization overhead" and "no NVMe at all." The delivered performance is functionally identical to rotational storage.
+
+5. **Unaddressed findings.** Muthi'a's response does not address: steal time of 0-53% on "dedicated" vCPUs; the hPanel dashboard reporting 9% CPU when the kernel measures 98%; the convergence of 3 independent services on the same AMD EPYC 7543P processor with identical configurations; or the systemic pattern across all audited services.
+
+---
+
+## Acknowledgment 11 — SAE Team: CPU Limitation Active for Over a Week
+
+**Date:** June 9, 2026
+**Source:** Hostinger SAE Team (escalated technical review via Muthi'a)
+
+> "The reason you see CPU steal is because the virtual machine has been limited in CPU for more than a week. When the CPU limit is reached, the hypervisor withholds CPU cycles from your VM. From inside the VM, this appears as CPU steal (%st in top); your vCPUs are waiting for cycles that the hypervisor is not delivering due to the active limit."
+
+> "hPanel reports delivered CPU usage (what the hypervisor is actually providing), while tools like top inside the VM report demanded CPU usage (what your processes are attempting to use). Both readings are accurate: they measure different things. This is not falsified data."
+
+> "The CPU limitation active at the time of the test affected your results. The same CPU limitation is the reason you could not perform the disk benchmark correctly; the overall resource restrictions active at the time of the test affected your results."
+
+> "If CPU usage remains at a high level (e.g., ~90% for 24 hours), the CPU rate limit will be applied and your effective CPU allocation will be reduced. hPanel will display a notification banner when this is active."
+
+> "You can remove this limitation by navigating to hPanel and clicking the Remove Limitation button. After that, the steal issue and the I/O speed issue will be resolved."
+
+**Forensic significance — four key admissions:**
+
+1. **CPU limitation was active BEFORE the first suspension.** The SAE team confirms the limitation "has been active for more than a week." The disk benchmark occurred on June 3 between 17:20-18:19 UTC. The first suspension occurred at 19:28 UTC. If the CPU limitation was already active during the benchmark, then Hostinger was silently throttling resources sold as "dedicated" BEFORE any notification, BEFORE any suspension, and BEFORE any communication to the customer. This contradicts the earlier narrative that the suspension was triggered by the customer's resource usage — the resources were already being limited before the usage that supposedly caused the suspension.
+
+2. **Steal time caused by Hostinger's own limitation, not by shared infrastructure.** The SAE team explicitly states that the 0-53% steal time was caused by their CPU rate limit, not by other tenants on a shared host. This directly contradicts agent Aymene's statement on June 3, 18:56 UTC: *"un uso elevado y sostenido al límite (99-100%) puede afectar al entorno físico COMPARTIDO... otros usuarios en la misma infraestructura."* ("sustained high usage at the limit can affect the SHARED physical environment... other users on the same infrastructure.") The SAE team's explanation and Aymene's explanation are mutually exclusive. One of them is false.
+
+3. **"Remove Limitation" button on "dedicated" resources.** Hostinger sells "8 dedicated vCPUs — exclusively yours" and simultaneously provides a "Remove Limitation" button in hPanel to remove CPU throttling from those same "dedicated" resources. The existence of the button proves the limitation exists. The limitation existing proves the resources are not dedicated. A customer should not need to click a button to receive the resources they were sold.
+
+4. **Dashboard discrepancy confirmed and reframed.** The SAE team acknowledges that hPanel and `top` report different CPU percentages. Their explanation — "delivered vs. demanded" — is technically plausible. However, at no point in the purchase process, product documentation, or Terms of Service is this distinction disclosed to the customer. A customer buying "8 dedicated vCPUs" has no way to know that the hPanel dashboard displays only the throttled allocation, not the actual CPU demand. The distinction may be technically accurate. The non-disclosure of the distinction is not.
+
+---
+
 ## Agent Identification
 
 | Name | Role | Dates Active |
 |------|------|-------------|
 | Aymene | Support Agent | June 3, 2026 |
-| Muthi'a | Quality & Development / Customer Success Team | June 3–4, 2026 |
+| Muthi'a | Quality & Development / Customer Success Team | June 3–4, June 9, 2026 |
 | Carola | Support (secondary contact) | June 4–5, 2026 |
 | Raminta | Team Lead | June 5, 2026 |
 | Rani | Customer Success Team (escalated response) | June 8, 2026 |
+| SAE Team | Escalated Technical Review | June 9, 2026 |
 
 All communications occurred through Hostinger's official ticketing and live chat systems. Transcripts have been preserved with SHA-256 seals as part of the evidence package.
+
 

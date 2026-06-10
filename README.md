@@ -1,4 +1,4 @@
-# Hostinger KVM 8 — Forensic Infrastructure Audit
+# Hostinger KVM 8 — Forensic Infrastructure Audit: "Dedicated" Resources Require a "Remove Limitation" Button
 
 **Reference:** PKE-FORENSIC-2026-001  
 **Date:** June 3–7, 2026  
@@ -7,7 +7,7 @@
 
 ---
 
-![CPU Limitation Activated — hPanel showing CPU throttling on "dedicated" resources at only 69% CPU, 31% RAM](evidence/screenshots/01-hpanel-cpu-limitation.jpg)
+![CPU Limitation Activated — hPanel showing CPU throttling on "dedicated" resources. The SAE team confirmed this limitation was active "for more than a week" — before any suspension or notification. To remove it, click "Remove Limitation" — on resources sold as "dedicated."](evidence/screenshots/01-hpanel-cpu-limitation.jpg)
 
 ---
 
@@ -19,8 +19,8 @@ Upon forensic examination of the VPS from within the operating system, systemati
 
 - **CPU:** The physical host showed steal time ranging from **0% to 53%**, meaning up to 4.2 of the 8 vCPUs sold were consumed by the hypervisor at peak contention. Support subsequently confirmed in writing that the "physical environment is **SHARED**," contradicting the product page's claim of "dedicated resources."
 - **Storage:** The device identified as `/dev/sda` is a **QEMU HARDDISK** on an IDE controller — not an NVMe SSD as advertised. Sustained write throughput averaged **108.7 MB/s** over 59 minutes, approximately 3.6% of typical NVMe performance.
-- **Network:** Advertised monthly bandwidth of 32 TB is mathematically impossible on the provisioned ~1 Gbps pipe, which has a theoretical ceiling of 10.8 TB/day under absolute ideal conditions.
-- **Support conduct:** Hostinger support invented a nonexistent "abuse report" as justification for the suspension, then **retracted it in writing** — while simultaneously confirming that the physical environment is shared, that CPU limitation had been applied to "dedicated" resources, and that customer processes had been terminated by the host's OOM killer.
+- **Network:** The provisioned 1 Gbps pipe is shared among multiple tenants — Hostinger's own support confirmed "other users on the same infrastructure." At ~100 Mbps effective throughput per tenant under realistic shared conditions, the practical monthly ceiling is approximately 25 TB before contention effects, well below the advertised 32 TB.
+- **Support conduct:** Hostinger support invented a nonexistent "abuse report" as justification for the suspension, then **retracted it in writing** — while simultaneously confirming that the physical environment is shared, that CPU limitation had been applied to "dedicated" resources, and that customer processes had been terminated by the host's OOM killer. On June 9, their escalated SAE team confirmed the CPU limitation had been active **"for more than a week"** — before any notification — and provided instructions to click a **"Remove Limitation" button** on resources sold as "dedicated."
 
 ---
 
@@ -31,14 +31,16 @@ This is the forensic timeline of communications with Hostinger Customer Success 
 | # | Date (UTC) | Agent | Statement | Screenshot |
 |---|-----------|-------|-----------|------------|
 | 1 | Jun 3, 18:49 | **Aymene** | Suspension was due to **"an abuse report"** related to server activity. | [`02-aymene-abuse-report.jpg`](evidence/screenshots/02-aymene-abuse-report.jpg) |
-| 2 | Jun 3, 18:56 | **Aymene** | **RETRACTION.** "No external abuse report exists. It was an error. Suspension was due to high CPU affecting the **shared physical environment.**" — Contradicts product claim: *"Dedicated resources — exclusively yours."* | Transcripts �Section 02 |
+| 2 | Jun 3, 18:56 | **Aymene** | **RETRACTION.** "No external abuse report exists. It was an error. Suspension was due to high CPU affecting the **shared physical environment.**" — Contradicts product claim: *"Dedicated resources — exclusively yours."* | Transcripts �Section 02 |
 | 3 | Jun 4, 00:13 | **Muthi'a** | Suspension was due to **"CPU exceeding 180 continuous minutes."** Confirms existence of **"customers on the same physical node."** Server Usage graph shows CPU at 100%. | [`03-muthia-cpu-180-minutes.jpg`](evidence/screenshots/03-muthia-cpu-180-minutes.jpg) |
 | 4 | Jun 4, 00:13 | **Muthi'a** | Cites **Section 6.4 of the Terms of Service** to justify suspension. Provides steps to identify process, optimize CPU, scan malware. | [`04-muthia-tos-section-6-4.jpg`](evidence/screenshots/04-muthia-tos-section-6-4.jpg) |
 | 5 | Jun 5, 12:37 | **Carola** | Suspension was due to **"abnormal outbound network traffic."** Confirms crashkernel, balloon driver, ttyS0, 2014 BIOS, IDE disk as **"standard KVM components"** on every VPS. | [`05-carola-network-traffic-standard-kvm.jpg`](evidence/screenshots/05-carola-network-traffic-standard-kvm.jpg) |
-| 6 | Jun 8 | **Rani** | Formal escalated response. Maintains "network traffic" cause. Admits all forensic components exist: "standard parts of KVM." Claims "no access to VPS" — contradicted by Server Usage data showing internal metrics. | Transcripts �Section 09 |
+| 6 | Jun 8 | **Rani** | Formal escalated response. Maintains "network traffic" cause. Admits all forensic components exist: "standard parts of KVM." Claims "no access to VPS" — contradicted by Server Usage data showing internal metrics. | Transcripts Section 09 |
+| 7 | Jun 9 | **Muthi'a** | **3rd retraction.** "The reference to CPU usage was an error on my part." Clarifies zero traffic Jun 4 was post-suspension. Cites 3rd different legal basis (Section 4 Hosting Agreement). | Transcripts Section 10 |
+| 8 | Jun 9 | **SAE Team** | **Acknowledgment 11.** CPU limitation active "for more than a week" — BEFORE suspension. Steal time caused by Hostinger's own rate limit, not shared infra (contradicts Aymene). Confirms hPanel/top discrepancy as "delivered vs demanded." Provides "Remove Limitation" button for "dedicated" resources. | Transcripts Section 11 |
 | — | Jun 5, 12:37 | **Carola** | Claims VPS is **"self-managed"** — customer has "full control." States Hostinger **"does not access or modify anything within your VPS."** | [`06-carola-self-managed-claim.jpg`](evidence/screenshots/06-carola-self-managed-claim.jpg) |
 
-> **Aymene, June 3, 2026, 18:56 UTC — RETRACTION AND CONFESSION**
+> **Aymene, June 3, 2026, 18:56 UTC — RETRACTION AND Acknowledgment**
 >
 > *"I want to make an immediate correction. No external abuse report exists, nor any legal infraction. The earlier mention of an 'abuse report' was an error on my part. [...] Sustained high usage at the limit (99–100%) can affect the **shared physical environment.** Nuestros sistemas están diseñados para proteger la integridad de todo el nodo cuando un solo VPS provoca un 'Steal Time' significativo o latencia para **otros usuarios en la misma infraestructura.** "*
 
@@ -52,7 +54,7 @@ This is the forensic timeline of communications with Hostinger Customer Success 
 | 2 | [`02-timeline.md`](02-timeline.md) | Chronological event log from purchase to publication |
 | 3 | [`03-infrastructure-analysis.md`](03-infrastructure-analysis.md) | Sold vs. delivered: full infrastructure comparison |
 | 4 | [`04-benchmark-data.md`](04-benchmark-data.md) | CPU, RAM, disk, and network benchmark metrics |
-| 5 | [`05-support-communications.md`](05-support-communications.md) | Verbatim transcript of support confessions |
+| 5 | [`05-support-communications.md`](05-support-communications.md) | Verbatim transcript of support Acknowledgments |
 | 6 | [`06-regulatory-violations.md`](06-regulatory-violations.md) | Applicable regulations and identified violations |
 | 7 | [`07-cloudflare-assessment.md`](07-cloudflare-assessment.md) | Hostinger's dependency on Cloudflare infrastructure |
 | 8 | [`08-evidence-ledger.md`](08-evidence-ledger.md) | Evidence inventory with dual-hash verification |
@@ -67,15 +69,15 @@ This is the forensic timeline of communications with Hostinger Customer Success 
 
 | File | SHA-256 |
 |------|---------|
-| 01-executive-summary.md | `5228C7EB825456A2D349B71506972C5DA05ADE4D23D48B5D15F0F8C716054545` |
-| 02-timeline.md | `C4CD49D63B735091DA3141A979859C08F78F29364EE8217BBBB7B75D9C62013A` |
-| 03-infrastructure-analysis.md | `739B63B5BF627E6E2169FE1DA238C8448BF10A6BC1F5F73D211329118EB3E35C` |
-| 04-benchmark-data.md | `545FF6540E44DB338E5FD3420B112DB5A3C21FF8EC40406567817484EEDECADD` |
-| 05-support-communications.md | `56B4359B10818A6A728C5072A092EBF944455F78A688B743C212F4191D798DDB` |
-| 06-regulatory-violations.md | `548C28D1A51231C5901E78DB6A32BE522DAA3468A0EAB56532F03C842EA89524` |
-| 07-cloudflare-assessment.md | `495125C8DDB9E7C95EE5AD9835C9296706A94220AED26FF0C1765D8DF8544AF1` |
-| 08-evidence-ledger.md | `935C0767919EB849230159B91FA398EE2D7BD1DDEDF790CD627EB1B8392A2749` |
-| 09-compliance-exposure.md | `C864DC001F964ABE30A3D635B2B91A7D5E7F2DA60F04AD0FB5C9EA0984EC1E15` |
+| 01-executive-summary.md | `C9283D231560B6FF5CCF1CD2D18397C76843A26210FBC13606793291139F97FE` |
+| 02-timeline.md | `79D266B2E5BDEEF50A7F935FF915B3C488AD75181B7107A0C9362B56A26AF328` |
+| 03-infrastructure-analysis.md | `469372F70B5EFFB20926D415023AFA109B64CF777D903D954671954FBE5C105B` |
+| 04-benchmark-data.md | `4A62FAB99BDA621C91192D5529203327DFF4A1C5486AFC8298AB5B474E778CA9` |
+| 05-support-communications.md | `584E6A2DCF6E6555B36DE6D453EF3AABD87D99D7CD9BDB5C26A788ACF85225EE` |
+| 06-regulatory-violations.md | `4FB375F76BE40A2907F4126D49572B0A5373107A87367E9ED3C8EDA7319224E3` |
+| 07-cloudflare-assessment.md | `844E9EAC9E4C2FBFBB04DD2E7DF7256860CAA921DAC8F29B5DA0AFF1BEF5B089` |
+| 08-evidence-ledger.md | `5FA322F494B4C8EE5A26636CFC0D12EA5F6D72E55C73227708EFA10E69636D7D` |
+| 09-compliance-exposure.md | `9E23F64E25734BF3D07C32C61A077146EC652F96881193B9EF8BA68F7A87AB8B` |
 
 Full BLAKE3 hashes are in [`seals/MANIFEST.txt`](seals/MANIFEST.txt).
 
@@ -119,9 +121,9 @@ This audit is designed for adversarial verification — every claim can be check
 |----------------|----------|------------|
 | The timeline of events | `02-timeline.md` | Chat timestamps in `evidence/transcripts/` |
 | The infrastructure analysis | `03-infrastructure-analysis.md` | Benchmark data in `04-benchmark-data.md` |
-| The support confessions | `05-support-communications.md` | Verbatim chat in `evidence/transcripts/` |
+| The support Acknowledgments | `05-support-communications.md` | Verbatim chat in `evidence/transcripts/` |
 | A specific screenshot | `evidence/screenshots/` | Corresponding transcript section |
-| The 5 contradictory explanations | `02-timeline.md` �Section Contradictions | Transcript �Section 11 (enumerated table) |
+| The 5 contradictory explanations | `02-timeline.md` �Section Contradictions | Transcript �Section 11 (enumerated table) |
 | The legal analysis | `06-regulatory-violations.md` | `09-compliance-exposure.md` (marketing-to-delivery gaps) |
 | Any SHA-256 / BLAKE3 seal | `seals/MANIFEST.txt` | Your own `sha256sum` or `b3sum` computation |
 
@@ -152,6 +154,12 @@ A file that matches both its SHA-256 and BLAKE3 seals has not been modified. Per
 
 ---
 
+## Auditor Position
+
+**Disclosure:** The auditor (Carlos Figuera) is both the author of this audit and the affected Hostinger customer. This is not an independent third-party audit. All evidence was collected directly from the auditor's own provisioned services. The findings are presented with source references and cryptographic seals to enable independent verification by any third party. Readers are encouraged to replicate the methodology on their own Hostinger services and compare results.
+
+---
+
 **Developer:** Carlos Figuera  
 **Contact:** [t1@nexus-engine.sbs](mailto:t1@nexus-engine.sbs) · [@xfiguerapro](https://x.com/xfiguerapro)  
 **Engine:** PEGASUS KINETIC ENGINE — Intelligent autonomous forensic auditing motor  
@@ -159,4 +167,5 @@ A file that matches both its SHA-256 and BLAKE3 seals has not been modified. Per
 **Legal entity:** Panorama Makers Hub LLC, New Mexico, USA  
 **Standard:** ISO/IEC 27037:2012 — Guidelines for identification, collection, acquisition, and preservation of digital evidence  
 **Integrity:** Any modification to any file in this repository invalidates its corresponding SHA-256 and BLAKE3 seals
+
 

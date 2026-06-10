@@ -58,3 +58,4 @@ This creates an asymmetric enforcement architecture: Hostinger deploys Cloudflar
 | Legal documentation access | Gated behind WAF | N/A |
 | Service ports exposed | 443 only (Cloudflare) | 22, 80, 443, 3306, 8080, and others |
 
+

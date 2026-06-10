@@ -90,13 +90,13 @@ While ICANN's jurisdiction is limited to domain registration and DNS abuse (phis
 
 | # | Jurisdiction | Law/Regulation | Violation | Evidence Reference |
 |---|-------------|---------------|-----------|-------------------|
-| 1 | EU | DSA Art. 17 | Suspension without statement of reasons | ÂSection 5, Confessions 1-2 |
-| 2 | EU | DSA Art. 21 | No notification of service restriction | ÂSection 5, Confession 1 |
-| 3 | EU | UCPD 2005/29 Art. 6(1) | False advertising ("dedicated" vs. shared) | ÂSection 3.4, Confession 3 |
+| 1 | EU | DSA Art. 17 | Suspension without statement of reasons | ÂSection 5, Acknowledgments 1-2 |
+| 2 | EU | DSA Art. 21 | No notification of service restriction | ÂSection 5, Acknowledgment 1 |
+| 3 | EU | UCPD 2005/29 Art. 6(1) | False advertising ("dedicated" vs. shared) | ÂSection 3.4, Acknowledgment 3 |
 | 4 | EU | UCPD 2005/29 Art. 6(1)(b) | Misleading product claims (NVMe, bandwidth) | ÂSection 3.6, ÂSection 3.7 |
-| 5 | EU | GDPR Art. 5(1)(c) | Disproportionate monitoring | ÂSection 3.4, Confession 4 |
+| 5 | EU | GDPR Art. 5(1)(c) | Disproportionate monitoring | ÂSection 3.4, Acknowledgment 4 |
 | 6 | EU | GDPR Art. 32 | Inadequate security measures (ttyS0, crashkernel) | ÂSection 3.8 |
-| 7 | Lithuania | VVTAT consumer law | Misleading advertising, unjustified restriction | ÂSection 3.4, Confession 3 |
+| 7 | Lithuania | VVTAT consumer law | Misleading advertising, unjustified restriction | ÂSection 3.4, Acknowledgment 3 |
 | 8 | USA | FTC Act ÂSection 5 | Deceptive acts or practices | ÂSection 3.10 (summary comparison) |
 | 9 | USA (NM) | NM Unfair Practices Act | False representation of services | ÂSection 3.10 |
 | 10 | Global | ICANN RAA Spec 4 | Registrar integrity obligations | ÂSection 3 entire |
@@ -110,4 +110,5 @@ While ICANN's jurisdiction is limited to domain registration and DNS abuse (phis
 3. **EU DSA Coordinator (Lithuania)** â€” Digital Services Act enforcement within Member State
 4. **GDPR Supervisory Authority (VDAI, Lithuania)** â€” Data protection violation regarding unauthorized monitoring
 5. **ICANN Contractual Compliance** â€” Registrar-specific obligations regarding integrity of service
+
 

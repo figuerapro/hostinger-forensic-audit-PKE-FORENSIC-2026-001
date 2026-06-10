@@ -2,7 +2,7 @@
 
 This document cross-references Hostinger's published legal policies, marketing claims, and support conduct against the forensic evidence collected during the KVM 8 audit. Every Hostinger claim cited below is documented either through their publicly accessible pages or through verbatim support communications obtained during the audit.
 
-**Note:** During the audit period, Hostinger's legal pages (Terms of Service, Privacy Policy, Refund Policy, Acceptable Use Policy) were inaccessible from the auditor's IP range — returning HTTP 403 via Cloudflare's WAF. This obstruction of access to the very policies used to justify the customer's suspension is documented as an independent finding (see �Section 07 Cloudflare Assessment).
+**Note:** During the audit period, Hostinger's legal pages (Terms of Service, Privacy Policy, Refund Policy, Acceptable Use Policy) were inaccessible from the auditor's IP range — returning HTTP 403 via Cloudflare's WAF. This obstruction of access to the very policies used to justify the customer's suspension is documented as an independent finding (see �Section 07 Cloudflare Assessment).
 
 ---
 
@@ -15,11 +15,11 @@ Hostinger's KVM 8 product page represents the following service specifications. 
 | **"8 vCPU dedicated"** | Steal time 0–53%. At 53% steal, effective vCPUs = 3.76. Support agent Aymene confirmed: *"puede afectar al entorno físico COMPARTIDO"* ("can affect the SHARED physical environment") — June 3, 2026, 18:56 UTC. | `/proc/stat` measurements; Support chat Section 2 (EN transcript) |
 | **"32 GB RAM guaranteed"** | 18 OOM kills documented. Support agent Muthi'a confirmed: *"RAM dropped drastically to ~2 GB. This is consistent with the OOM killer terminating processes."* — June 4, 2026, 23:55 UTC. Balloon driver (`virtio_balloon`) active for provider-side RAM reclamation without notification. | `dmesg`, `free`, `lsmod`; Support chat Section 7 (EN transcript) |
 | **"400 GB NVMe SSD"** | QEMU HARDDISK on 1996 IDE controller (`/dev/sda`). 512-byte logical sectors (NVMe native = 4,096 bytes). Sustained write: 108.7 MB/s vs. 3,000+ MB/s NVMe expected. 30-year-old PIIX3 IDE controller. | `lsblk`, `dd` benchmark (376 GB in 59 min), `/sys/block/sda/queue/` |
-| **"32 TB bandwidth"** | 1 Gbps pipe maximum. Mathematical ceiling at 1 Gbps = ~324 TB/month theoretical. Shared among 5+ tenants. Realistic per-tenant: ~13 TB/month. The advertised 32 TB requires ~3+ Gbps sustained — not achievable. | Mathematical proof; `ethtool`; `virtio_net` bridge shared topology |
+| **"32 TB bandwidth"** | 1 Gbps pipe shared among multiple tenants. At ~200 Mbps effective throughput per tenant under realistic shared conditions, the practical monthly ceiling is approximately 13 TB — well below the advertised 32 TB. | Mathematical proof; `ethtool`; `virtio_net` bridge shared topology |
 | **"Dedicated resources — exclusively yours"** | Support confirmed *"customers on the same physical node"* (Muthi'a, June 4, 00:13 UTC) and *"other users on the same infrastructure"* (Aymene, June 3, 18:56 UTC). Five different agents confirmed shared infrastructure across 72 hours of communication. | Support chat Sections 2, 5, 7, 9 |
-| **"Full root access"** | Service was suspended for legitimate resource usage within contracted limits. Root credentials were subsequently changed without notification (Confession 7). CPU limitation was applied to "dedicated" resources with a warning of re-application. | Support chat Sections 5, 7; SSH access logs |
-| **"99.9% uptime guarantee"** | Four service interruptions in 48 hours: administrative suspension (Jun 3, 19:28), two forced restarts (Jun 3 ~22:56, Jun 4 ~23:24), credential revocation (Jun 5). None preceded by customer notification. | Timeline �Section 02; Support chat Confession 6 |
-| **"Modern KVM virtualization"** | i440FX + PIIX3 chipset (released: Q1 1996). BIOS firmware: QEMU Standard PC, dated 01/04/2014 — 12 years unpatched. Intel RAPL (Intel CPU feature) injected on AMD EPYC 7543P (AMD CPU). The chipset predates Google, Wi-Fi, USB 2.0, and the NVMe specification. | `dmidecode`, `lspci`, `dmesg`; Infrastructure Analysis �Section 3.3 |
+| **"Full root access"** | Service was suspended for legitimate resource usage within contracted limits. Root credentials were subsequently changed without notification (Acknowledgment 7). CPU limitation was applied to "dedicated" resources with a warning of re-application. | Support chat Sections 5, 7; SSH access logs |
+| **"99.9% uptime guarantee"** | Four service interruptions in 48 hours: administrative suspension (Jun 3, 19:28), two forced restarts (Jun 3 ~22:56, Jun 4 ~23:24), credential revocation (Jun 5). None preceded by customer notification. | Timeline �Section 02; Support chat Acknowledgment 6 |
+| **"Modern KVM virtualization"** | i440FX + PIIX3 chipset (released: Q1 1996). BIOS firmware: QEMU Standard PC, dated 01/04/2014 — 12 years unpatched. Intel RAPL (Intel CPU feature) injected on AMD EPYC 7543P (AMD CPU). The chipset predates Google, Wi-Fi, USB 2.0, and the NVMe specification. | `dmidecode`, `lspci`, `dmesg`; Infrastructure Analysis �Section 3.3 |
 
 ---
 
@@ -88,7 +88,7 @@ However, the following evidence demonstrates active monitoring and intervention:
 |--------------------|----------------|----------|
 | "No accedemos ni modificamos nada dentro de su VPS" (Carola) | Muthi'a provided process-level Server Usage data: CPU at 100% for 24 hours, RAM killed by OOM killer, traffic spike location identified | Support chat Section 7 |
 | "Self-managed service" (Muthi'a, Carola) | CPU limitation was applied automatically. Muthi'a lifted it, warning it would be reapplied if usage remained high | Support chat Sections 5, 7 |
-| "Full control over everything inside the VPS" (Carola) | Crashkernel=512M reserves customer RAM for provider crash dumps. Balloon driver enables provider-side RAM reclamation. ttyS0 serial console allows provider access without SSH audit logging. SonicPanel PHP executes as root on boot without customer consent. | Infrastructure Analysis �Section 3.5, �Section 3.8 |
+| "Full control over everything inside the VPS" (Carola) | Crashkernel=512M reserves customer RAM for provider crash dumps. Balloon driver enables provider-side RAM reclamation. ttyS0 serial console allows provider access without SSH audit logging. SonicPanel PHP executes as root on boot without customer consent. | Infrastructure Analysis �Section 3.5, �Section 3.8 |
 | "No son herramientas de monitoreo" (Carola) | Server Usage panel tracked CPU, RAM, disk, and network at process level with 24-hour granularity | Support chat Section 7 (Muthi'a's data summary) |
 
 ### 9.4.2 GDPR Implications
@@ -166,15 +166,41 @@ During the audit period, attempts to access Hostinger's own legal policy pages f
 | **EU** | Unfair Contract Terms Directive 93/13/CEE | Suspension at "sole discretion" without notice is an unfair contract term | Clause void ab initio — legally unenforceable |
 | **EU** | GDPR Art. 5(1)(c), 6, 12–14, 32 | Undisclosed process-level monitoring; inadequate security measures | Fines up to €20M or 4% of annual global turnover |
 | **EU** | Consumer Rights Directive 2011/83/EU | Pre-contractual information misleading as to main characteristics of the service | Right to remedies including price reduction or contract termination |
-| **USA** | FTC Act �Section 5 | Unfair or deceptive acts or practices | Civil penalties up to $50,120 per violation; injunctive relief |
-| **USA (NM)** | New Mexico Unfair Practices Act �Section 57-12-2 | False or misleading representation of goods or services | Treble damages, attorney's fees, injunctive relief |
+| **USA** | FTC Act �Section 5 | Unfair or deceptive acts or practices | Civil penalties up to $50,120 per violation; injunctive relief |
+| **USA (NM)** | New Mexico Unfair Practices Act �Section 57-12-2 | False or misleading representation of goods or services | Treble damages, attorney's fees, injunctive relief |
 | **Lithuania** | Civil Code Art. 6.228 | Breach of contract — failure to deliver services as described | Damages, specific performance, contract termination |
-| **Lithuania** | Law on Advertising, Art. 5 | Misleading advertising | Fines, corrective publication order |
+| **Brazil** | Consumer Protection Code (CDC) Art. 37 | Misleading advertising — Hostinger subsidiary Weblink operates in Brazil | Fines up to R$10M; mandatory corrective advertising |
+| **Indonesia** | Consumer Protection Law No. 8/1999, Art. 9-10 | False advertising — Hostinger subsidiary Niagahoster operates in Indonesia | Criminal sanctions up to 5 years imprisonment for business actors; fines |
+| **United Kingdom** | Consumer Protection from Unfair Trading Regulations 2008, Reg. 5 | Misleading actions — Hostinger sells to UK consumers | Criminal offence; unlimited fine on indictment |
+| **Argentina** | Consumer Protection Law No. 24,240, Art. 4 | Duty to provide truthful and adequate information | Fines, obligation to publish corrective advertising |
+| **Mexico** | Federal Consumer Protection Law (LFPC) Art. 32 | Misleading advertising — PROFECO enforcement | Fines up to MXN $3.7M; forced corrective measures |
+| **Cyprus** | Unfair Commercial Practices Law 103(I)/2007 | Hostinger maintains an office in Larnaca, Cyprus — additional EU jurisdiction | Fines, injunctions |
+| **Singapore** | Consumer Protection (Fair Trading) Act | Hostinger International Limited registered in Singapore | Injunctions, court-ordered declarations |
 | **Global** | ICANN RAA 2013, Specification 4 | Registrar operating without integrity regarding infrastructure claims | Compliance inquiry, potential accreditation review |
 
 ---
 
-## 9.9 Conclusion
+## 9.9 The "Remove Limitation" Button — Structural Proof of Non-Dedicated Resources
+
+On June 9, 2026, Hostinger's escalated SAE (Specialized Assistance & Escalations) team provided the following explanation through agent Muthi'a:
+
+> *"The reason you see CPU steal is because the virtual machine has been limited in CPU for more than a week. When the CPU limit is reached, the hypervisor withholds CPU cycles from your VM. From inside the VM, this appears as CPU steal (%st in top)."*
+
+> *"You can remove this limitation by navigating to hPanel and clicking the Remove Limitation button."*
+
+This admission is the most probative piece of evidence in the audit:
+
+**1. The limitation was active before any notification.** The SAE team confirms the CPU limitation was active "for more than a week" — placing its activation BEFORE the customer's disk benchmark (June 3, 17:20 UTC), BEFORE the first suspension (June 3, 19:28 UTC), and BEFORE any communication from Hostinger to the customer about resource usage. The customer was being silently throttled on resources sold as "dedicated" and "exclusively yours" without knowledge, without notification, and without the limitation being disclosed in any pre-purchase documentation.
+
+**2. Steal time is caused by Hostinger's administrative action, not by other tenants.** Agent Aymene stated on June 3, 18:56 UTC: *"un uso elevado y sostenido puede afectar al entorno físico COMPARTIDO... otros usuarios en la misma infraestructura."* ("sustained high usage can affect the SHARED physical environment... other users on the same infrastructure.") The SAE team now states that steal time is caused by Hostinger's own CPU rate limit — an administrative throttling mechanism, not by shared infrastructure. These two explanations are mutually incompatible. One of them is false.
+
+**3. The "Remove Limitation" button is a structural contradiction of the product's fundamental marketing claim.** Hostinger sells "8 dedicated vCPUs — exclusively yours" and simultaneously provides an hPanel button labeled "Remove Limitation" to de-throttle those same resources. A resource that requires a user action to remove throttling is, by definition, not dedicated. The existence of the button proves the limitation exists. The existence of the limitation proves the resources are not dedicated. The customer should not need to click a button to receive the allocation they were sold.
+
+**4. The dashboard discrepancy is confirmed but undisclosed.** The SAE team acknowledges that hPanel reports "delivered CPU" while `top` reports "demanded CPU" — confirming the 9% vs. 98% discrepancy observed during the audit. The distinction between delivered and demanded CPU is technically valid. The failure to disclose this distinction to customers purchasing "dedicated resources" is not. A customer buying 8 vCPUs has no way to know that the hPanel dashboard displays only the throttled allocation, not the actual CPU demand — because this distinction is not documented anywhere in the product page, Terms of Service, or Acceptable Use Policy.
+
+---
+
+## 9.10 Conclusion
 
 Hostinger's public-facing claims — across its product page, Terms of Service, Acceptable Use Policy, Privacy Policy, and support communications — present a systematically misleading picture of the service delivered:
 
@@ -182,15 +208,18 @@ Hostinger's public-facing claims — across its product page, Terms of Service, 
 
 2. **The Terms of Service are structurally abusive.** Vague prohibitions, undefined thresholds, unilateral suspension rights, and an "as-is" clause that conflicts with specific marketing promises create a contract designed to be enforced only against the customer, never against the provider.
 
-3. **The support process is deceptive.** A fabricated "abuse report" was used to justify service restriction, then retracted when challenged. Five contradictory explanations were provided for the same suspension. No agent provided a documented, verifiable cause.
+3. **The support process is deceptive.** A fabricated "abuse report" was used to justify service restriction, then retracted when challenged. Five contradictory explanations were provided for the same suspension across five different agents. Three separate agents acknowledged providing incorrect information. The escalated SAE team confirmed the CPU limitation was active before any notification — a fact no frontline agent disclosed.
 
 4. **Privacy is misrepresented.** The VPS is actively monitored at the process level while being marketed as "self-managed" — a contradiction that undermines the customer's ability to trust the environment with sensitive data.
 
 5. **Cloudflare is deployed to gatekeep access to legal policies.** A customer who is restricted or suspended cannot verify the terms under which the restriction was applied — because the terms themselves are behind a WAF that blocks the customer's IP.
 
-This document establishes that Hostinger's compliance posture is not merely deficient — it is structurally designed to mislead customers about the nature of the service while providing the provider with unlimited discretionary power to restrict, suspend, or terminate service without accountability.
+6. **The "Remove Limitation" button is the structural proof.** A product sold as "dedicated" should not require the customer to click a button to receive the purchased allocation. The button's existence — confirmed by Hostinger's own SAE team — is a functional admission that the resources are throttled by default. A throttled resource is not a dedicated resource. The button's existence is a functional confirmation that the resources are throttled by default. A throttled resource is inconsistent with the ordinary meaning of the term "dedicated" as represented on the product page.
+
+This document establishes that Hostinger's compliance posture is not merely deficient — it is the cumulative effect of these discrepancies, whether by design or negligence, is that a reasonable customer would be misled about the nature of the service purchased.
 
 ---
 
-**Cross-reference:** This document should be read alongside `03-infrastructure-analysis.md` (technical findings), `05-support-communications.md` (agent confessions), `06-regulatory-violations.md` (legal framework), and `07-cloudflare-assessment.md` (WAF obstruction of legal page access).
+**Cross-reference:** This document should be read alongside `03-infrastructure-analysis.md` (technical findings), `05-support-communications.md` (agent Acknowledgments), `06-regulatory-violations.md` (legal framework), and `07-cloudflare-assessment.md` (WAF obstruction of legal page access).
+
 

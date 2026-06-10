@@ -217,30 +217,18 @@ The measured throughput of 108.7 MB/s is consistent with a virtual disk backed b
 
 | Parameter | Advertised | Actual |
 |-----------|-----------|--------|
-| Monthly transfer | 32 TB | Mathematically unattainable |
+| Monthly transfer | 32 TB | Achievable on a dedicated 1 Gbps pipe, but the pipe is shared among multiple tenants |
 | Interface type | — | `virtio_net` (paravirtualized bridge) |
 | Observed maximum throughput | — | ~1 Gbps |
-| 32 TB at 1 Gbps continuous | — | Requires 71+ hours |
-| Theoretical monthly ceiling at 1 Gbps | — | ~324 TB |
-| Realistic ceiling (shared bridge, 5 tenants) | — | ~65 TB/month total ÷ 5 = ~13 TB per VPS |
+| 32 TB at 1 Gbps continuous | — | Requires ~71 hours (9.9% of monthly capacity at full saturation) |
+| Theoretical monthly ceiling at 1 Gbps (dedicated) | — | ~324 TB |
+| Realistic ceiling (shared bridge, 5 tenants) | — | ~65 TB total / 5 = ~13 TB per VPS |
 
-### Mathematical Analysis
+### Analysis
 
-```
-1 Gbps = 125 MB/s
-125 MB/s × 86,400 seconds/day = 10.8 TB/day
-10.8 TB/day × 30 days = 324 TB/month (theoretical maximum)
-```
+At 1 Gbps dedicated, 32 TB/month represents approximately 99 Mbps sustained — roughly 9.9% of the pipe's capacity. This is technically achievable on a dedicated interface. However, Hostinger's own support personnel confirmed the existence of "other users on the same infrastructure" and "customers on the same physical node" — establishing that the 1 Gbps pipe is shared infrastructure, not a dedicated connection.
 
-While 324 TB exceeds the advertised 32 TB, this is the *theoretical ceiling under absolute ideal conditions with zero contention.* In practice:
-
-1. The virtual bridge is shared among multiple VPS instances on the same physical host
-2. Network I/O consumes host CPU cycles, which are already subject to 21% steal time
-3. The host's physical NIC has a fixed capacity that must be divided among all tenants
-
-Under realistic shared conditions (5 tenants on a 1 Gbps pipe, conservatively), each tenant receives approximately 200 Mbps, yielding a practical monthly ceiling of ~65 TB/mol (total) / 5 tenants = **~13 TB per tenant.**
-
-The advertised 32 TB is not achievable on the provisioned infrastructure under any realistic load profile.
+Under realistic shared conditions (5 tenants on a 1 Gbps pipe, conservatively), each tenant receives approximately 200 Mbps, yielding a practical monthly ceiling of ~65 TB/mol total / 5 tenants = **~13 TB per tenant.** At this effective throughput, the advertised 32 TB is not achievable.
 
 ---
 
@@ -277,7 +265,7 @@ The hPanel dashboard underreported CPU utilization by approximately 89 percentag
 | Parameter | Advertised | Delivered | Verification Method |
 |-----------|-----------|-----------|-------------------|
 | CPU isolation | "Dedicated" | Shared (21% steal) | `/proc/stat`, `top` |
-| Physical environment | "Exclusively yours" | "Shared" (support confession) | Support chat transcript |
+| Physical environment | "Exclusively yours" | "Shared" (support Acknowledgment) | Support chat transcript |
 | vCPU count (effective) | 8 | ~6.3 | Steal time calculation |
 | Storage type | NVMe SSD | QEMU HARDDISK IDE | `lsblk`, `/sys/block/sda/queue/rotational` |
 | Storage speed | NVMe grade (3,000+ MB/s) | 108.7 MB/s avg | `dd` benchmark (59 min, 376 GB) |
@@ -352,4 +340,5 @@ The forensic correlation of data from three independent services — purchased a
 3. **Uniform metric concealment** — hPanel dashboards consistently underreporting CPU usage by significant margins across all service tiers.
 
 The KVM 8 VPS, sold as having "dedicated resources — exclusively yours," shares its processor, its undisclosed hypervisor access configuration, and its metric-falsifying dashboard with $2.99 shared hosting accounts. The price difference does not buy different hardware. It buys a different number displayed in a control panel — on infrastructure that is functionally identical at the silicon level.
+
 
