@@ -1,97 +1,98 @@
-╔═══════════════════════════════════════════════════════════════════════════════╗
-║  PKE-FORENSIC-2026-001 — SUPPORT CHAT TRANSCRIPT — FORENSIC EXCERPTS        ║
-║  Hostinger KVM 8 · 45.132.241.248 · June 3–5, 2026                          ║
-║  SHA-256 + BLAKE3 sealed                                                     ║
-╚═══════════════════════════════════════════════════════════════════════════════╝
+================================================================================
+  PKE-FORENSIC-2026-001 - SUPPORT CHAT TRANSCRIPT - FORENSIC EXCERPTS
+  Hostinger KVM 8 - 45.132.241.248 - June 3-5, 2026
+  SHA-256 + BLAKE3 sealed
+================================================================================
 
 This document contains the forensically relevant excerpts from the 72-hour
-support interaction with Hostinger International Ltd.
+support interaction with Hostinger International Ltd. The complete unedited
+transcript is available from the audit source files.
 
 Agents involved: Kodee (bot), Aymene, Muthi'a, Carola, Raminta (Team Lead)
 
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
 SECTION 1: FABRICATION OF "ABUSE REPORT" AS CAUSE OF SUSPENSION
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
 
-[User] — June 3, 2026, 18:47 UTC
-Conclusión Preliminar: El cliente nunca excedió ningún límite estipulado en
-su contrato. La suspensión carece de justificación técnica.
+[User] - June 3, 2026, 18:47 UTC
+Conclusion Preliminar: El cliente nunca excedio ningun limite estipulado en
+su contrato. La suspension carece de justificacion tecnica.
 
-Mediante análisis forense ejecutado desde dentro del VPS, se ha revelado la
+Mediante analisis forense ejecutado desde dentro del VPS, se ha revelado la
 infraestructura real asignada frente a la ofertada comercialmente:
 
-Procesamiento (CPU): Hardware Físico AMD EPYC 7543P 32-Core. Steal Time
-constante del 21% demuestra sobresuscripción de recursos. Más de 5 VPS en
+Procesamiento (CPU): Hardware Fisico AMD EPYC 7543P 32-Core. Steal Time
+constante del 21% demuestra sobresuscripcion de recursos. Mas de 5 VPS en
 este host.
 
 Hipervisor: KVM/QEMU. Chipset i440FX + PIIX (Lanzamiento: 1996). Arquitectura
-obsoleta (30 años de antigüedad).
+obsoleta (30 anos de antiguedad).
 
 Almacenamiento: QEMU HARDDISK (/dev/sda). Velocidad ~108 MB/s en escritura.
-No se está proporcionando almacenamiento NVMe real (>3000 MB/s).
+No se esta proporcionando almacenamiento NVMe real (>3000 MB/s).
 
-[Aymene, Hostinger Support] — June 3, 2026, 18:49 UTC
+[Aymene, Hostinger Support] - June 3, 2026, 18:49 UTC
 He revisado el estado de su VPS (45.132.241.248) con mi equipo. El servicio
 fue suspendido tras un INFORME DE ABUSO relacionado con la actividad del
-servidor. La suspensión fue una medida de seguridad basada en ese informe
-específico y no debido a un límite de recursos.
+servidor. La suspension fue una medida de seguridad basada en ese informe
+especifico y no debido a un limite de recursos.
 
 Estoy reactivando su VPS ahora. Le recomiendo revisar sus procesos activos y
-registros para asegurarse de que el servidor esté seguro y que no haya
+registros para asegurarse de que el servidor este seguro y que no haya
 actividad no autorizada, ya que los informes de abuso reiterados pueden
-llevar a una suspensión permanente.
+llevar a una suspension permanente.
 
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
 SECTION 2: RETRACTION OF FABRICATED "ABUSE REPORT"
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
 
-[User] — June 3, 2026, 18:54 UTC
-1. ¿QUÉ INFORME DE ABUSO? EXIJO que me lo entreguen COMPLETO: número de
-referencia, entidad que lo emitió, fecha y contenido íntegro. Sin ese
-documento, su afirmación es una ACUSACIÓN FALSA sin fundamento legal.
+[User] - June 3, 2026, 18:54 UTC
+1. QUE INFORME DE ABUSO? EXIJO que me lo entreguen COMPLETO: numero de
+referencia, entidad que lo emitio, fecha y contenido integro. Sin ese
+documento, su afirmacion es una ACUSACION FALSA sin fundamento legal.
 
-2. ¿QUÉ LEY INFRINGÍ? Citen ESPECÍFICAMENTE la ley, el artículo y la
-jurisdicción. Todos mis procesos son 100% legales.
+2. QUE LEY INFRINGI? Citen ESPECIFICAMENTE la ley, el articulo y la
+jurisdiccion. Todos mis procesos son 100% legales.
 
-3. RECONOCIMIENTO POR ESCRITO: Exijo confirmación de que usar la CPU, RAM,
-disco y red DENTRO de los límites ofertados NO constituye un "abuso". Si
+3. RECONOCIMIENTO POR ESCRITO: Exijo confirmacion de que usar la CPU, RAM,
+disco y red DENTRO de los limites ofertados NO constituye un "abuso." Si
 venden 8 vCPU, 32 GB RAM y 400 GB, usarlos al 99% es nuestro DERECHO.
 
-[Aymene, Hostinger Support] — June 3, 2026, 18:56 UTC
-★★★★★ RETRACTION — STATEMENT RETRACTED ★★★★★
+[Aymene, Hostinger Support] - June 3, 2026, 18:56 UTC
+***** RETRACTION - STATEMENT RETRACTED *****
 
-Quiero realizar una corrección inmediata con respecto al motivo de la
-suspensión. Tras una revisión más detallada con nuestro departamento técnico,
-he confirmado que la suspensión fue provocada por un uso elevado y sostenido
-de recursos que afectaba a la estabilidad del nodo anfitrión, Y NO POR UN
+Quiero realizar una correccion inmediata con respecto al motivo de la
+suspension. Tras una revision mas detallada con nuestro departamento tecnico,
+he confirmado que la suspension fue provocada por un uso elevado y sostenido
+de recursos que afectaba a la estabilidad del nodo anfitrion, Y NO POR UN
 INFORME DE ABUSO LEGAL O DE SEGURIDAD.
 
-1. Motivo de la suspensión: NO EXISTE NINGÚN INFORME DE ABUSO EXTERNO NI
-INFRACCIÓN LEGAL. La mención anterior de un "informe de abuso" fue un ERROR
-por mi parte durante la comprobación inicial.
+1. Motivo de la suspension: NO EXISTE NINGUN INFORME DE ABUSO EXTERNO NI
+INFRACCION LEGAL. La mencion anterior de un "informe de abuso" fue un ERROR
+por mi parte durante la comprobacion inicial.
 
-2. Uso y límites: Aunque usted dispone de una asignación de 8 vCPU y 32 GB de
-RAM, un uso elevado y sostenido al límite (99-100%) PUEDE AFECTAR AL ENTORNO
-FÍSICO COMPARTIDO. Nuestros sistemas están diseñados para proteger la
+2. Uso y limites: Aunque usted dispone de una asignacion de 8 vCPU y 32 GB de
+RAM, un uso elevado y sostenido al limite (99-100%) PUEDE AFECTAR AL ENTORNO
+FISICO COMPARTIDO. Nuestros sistemas estan disenados para proteger la
 integridad de todo el nodo cuando un solo VPS provoca un "Steal Time"
 significativo o latencia para OTROS USUARIOS en la misma infraestructura.
 
-★★★★★ ADMISSION: "ENTORNO FÍSICO COMPARTIDO" ★★★★★
-★★★★★ ADMISSION: "OTROS USUARIOS en la misma infraestructura" ★★★★★
+***** ADMISSION: "ENTORNO FISICO COMPARTIDO" *****
+***** ADMISSION: "OTROS USUARIOS en la misma infraestructura" *****
 
-[User] — June 3, 2026, 18:57 UTC
-TRADUCCIÓN: "Te suspendimos por USAR lo que PAGASTE."
+[User] - June 3, 2026, 18:57 UTC
+TRADUCCION: "Te suspendimos por USAR lo que PAGASTE."
 
-[User] — June 3, 2026, 18:58 UTC
-Ustedes venden "8 vCPU dedicados" y "recursos exclusivos". Su publicidad
+[User] - June 3, 2026, 18:58 UTC
+Ustedes venden "8 vCPU dedicados" y "recursos exclusivos." Su publicidad
 dice: "Your VPS resources are exclusively yours. No sharing with other users."
 
 Pero en este mismo chat usted acaba de escribir que me suspendieron porque mi
-uso "afectaba al entorno físico compartido" y causaba steal time a "otros
+uso "afectaba al entorno fisico compartido" y causaba steal time a "otros
 usuarios."
 
 Si hay otros usuarios, no es dedicado. Si hay otros usuarios, no es
-exclusivo. Si me suspenden por usarlo al 100%, no está garantizado.
+exclusivo. Si me suspenden por usarlo al 100%, no esta garantizado.
 
 Son sus propias palabras contra su propia publicidad.
 
@@ -101,290 +102,246 @@ NVMe, y todo sellado con SHA-256 + BLAKE3 bajo ISO/IEC 27037:2012.
 
 No hubo abuso. Hubo un cliente usando lo que ustedes le vendieron.
 
-═══════════════════════════════════════════════════════════════════════════════
-SECTION 3: REAL-TIME STEAL TIME ESCALATION (13% → 53%)
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
+SECTION 3: REAL-TIME STEAL TIME ESCALATION (13% to 53%)
+================================================================================
 
-[User] — June 3, 2026, 19:07 UTC
+[User] - June 3, 2026, 19:07 UTC
 Acaban de subir mi steal time de 13% a 53%.
 
-Eso significa que de los 8 vCPUs que pagué, solo me están dando 3.76. Me
-están robando más de la mitad del CPU en vivo.
+Eso significa que de los 8 vCPUs que pague, solo me estan dando 3.76. Me
+estan robando mas de la mitad del CPU en vivo.
 
-Ustedes venden "8 vCPU dedicados". Yo pagué por 8. Ustedes me entregan 3.76 y
-me ponen un aviso de "limitación de CPU activada."
+Ustedes venden "8 vCPU dedicados." Yo pague por 8. Ustedes me entregan 3.76 y
+me ponen un aviso de "limitacion de CPU activada."
 
-Esto no es una limitación. Es un robo documentado.
+Esto no es una limitacion. Es un robo documentado.
 
 Tengo evidencia forense de cada paso:
 - Steal 13% antes de su aviso
-- Steal 53% después de su "limitación"
-- Cero throttling por cgroups (no hay límite real)
+- Steal 53% despues de su "limitacion"
+- Cero throttling por cgroups (no hay limite real)
 - Su propio mensaje anterior confesando que es "entorno compartido"
 
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
 SECTION 4: DETAILED FORENSIC FINDINGS PRESENTED TO SUPPORT
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
 
-[User] — June 3, 2026, 19:46–19:50 UTC
+[User] - June 3, 2026, 19:46-19:50 UTC
 
 1. FRAUDE CONTRACTUAL EN ALMACENAMIENTO (Falso NVMe vs. IDE de 1996)
 La Oferta: Venta comercial de "400 GB NVMe" (+3,000 MB/s).
-Hallazgo Forense: El sistema carga los módulos ata_piix y ata_generic. Esto
-certifica que no existe conexión NVMe real. Están entregando un disco emulado
-bajo un chipset IDE PIIX del año 1996, limitando la escritura a 123 MB/s.
+Hallazgo Forense: El sistema carga los modulos ata_piix y ata_generic. Esto
+certifica que no existe conexion NVMe real. Estan entregando un disco emulado
+bajo un chipset IDE PIIX del ano 1996, limitando la escritura a 123 MB/s.
 
-2. BRECHA CRÍTICA DE PRIVACIDAD (Puerta Trasera ttyS0 No Auditada)
+2. BRECHA CRITICA DE PRIVACIDAD (Consola Serie ttyS0 No Auditada)
 Hallazgo Forense: Presencia de una consola serie activa (ttyS0 corriendo
 systemd-serial-getty). Permite al personal de Hostinger acceder al servidor
 desde el hipervisor SIN usar SSH, SIN dejar rastro en auth.log y SIN aparecer
 en el historial de sesiones (last).
 
-3. FALSIFICACIÓN DE ARQUITECTURA (Intel RAPL sobre AMD EPYC)
-Hallazgo Forense: El servidor físico es un AMD EPYC 7543P, pero el hipervisor
-KVM inyecta módulos de Intel (intel_rapl_msr). Están emulando una arquitectura
-de CPU distinta sobre el silicio real, falseando métricas de rendimiento.
+3. FALSIFICACION DE ARQUITECTURA (Intel RAPL sobre AMD EPYC)
+Hallazgo Forense: El servidor fisico es un AMD EPYC 7543P, pero el hipervisor
+KVM inyecta modulos de Intel (intel_rapl_msr). Estan emulando una arquitectura
+de CPU distinta sobre el silicio real, falseando metricas de rendimiento.
 
-4. EXPROPIACIÓN SILENCIOSA DE RECURSOS (Balloon Driver)
+4. EXPROPIACION SILENCIOSA DE RECURSOS (Balloon Driver)
 Hallazgo Forense: Memory Ballooning activo en el hipervisor. Este driver
-permite a Hostinger "desinflar" o retirar memoria RAM asignada a la máquina
-virtual en tiempo real para dársela a otros clientes.
+permite a Hostinger "desinflar" o retirar memoria RAM asignada a la maquina
+virtual en tiempo real para darsela a otros clientes.
 
-5. PROMESA MATEMÁTICAMENTE IMPOSIBLE (32 TB)
-Hallazgo Forense: Límite físico de red de 1 Gbps máximo compartido. A
-velocidad máxima de 1 Gbps, es físicamente imposible alcanzar 32 TB en un mes.
+5. PROMESA MATEMATICAMENTE IMPOSIBLE (32 TB)
+Hallazgo Forense: Limite fisico de red de 1 Gbps maximo compartido. A
+velocidad maxima de 1 Gbps, es fisicamente imposible alcanzar 32 TB en un mes.
 
-6. EXPROPIACIÓN DE MEMORIA (crashkernel=512M)
+6. EXPROPIACION DE MEMORIA (crashkernel=512M)
 Hallazgo Forense: El sistema arranca con crashkernel=...:512M. Hostinger
 secuestra 512 MB de RAM pagada por el cliente para volcados del hipervisor.
 Si hay un Kernel Panic, Hostinger genera un volcado completo de memoria que
-incluye contraseñas, claves criptográficas y datos de bases de datos.
+incluye contrasenas, claves criptograficas y datos de bases de datos.
 
 7. NEGLIGENCIA GRAVE EN CIBERSEGURIDAD (BIOS de 2014)
-Hallazgo Forense: BIOS QEMU rel-1.17.0 (Fecha: 01/04/2014). 12 años sin ser
+Hallazgo Forense: BIOS QEMU rel-1.17.0 (Fecha: 01/04/2014). 12 anos sin ser
 parcheada. Vulnerabilidades Spectre, Meltdown, L1TF, MDS sin mitigaciones.
 
-8. EVIDENCIA TÉCNICA DEFINITIVA DE FRAUDE (Sectores de 512 bytes)
-Hallazgo Forense: El almacenamiento reporta tamaño de sector lógico y físico
-de 512 bytes. La tecnología NVMe real opera con sectores de 4K (4096 bytes).
+8. EVIDENCIA TECNICA DEFINITIVA DE FRAUDE (Sectores de 512 bytes)
+Hallazgo Forense: El almacenamiento reporta tamano de sector logico y fisico
+de 512 bytes. La tecnologia NVMe real opera con sectores de 4K (4096 bytes).
 Los sectores de 512 bytes son exclusivos de arquitecturas IDE/SATA antiguas.
 Esto demuestra a nivel de arquitectura que el almacenamiento entregado no es
-un disco NVMe bajo ninguna interpretación.
+un disco NVMe bajo ninguna interpretacion.
 
-═══════════════════════════════════════════════════════════════════════════════
-SECTION 5: QUALITY DEPARTMENT RESPONSE — MUTHI'A (CONTRADICTION #3)
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
+SECTION 5: MUTHI'A - CPU >180 MINUTES + SHARED NODE (CONTRADICTION #3)
+================================================================================
 
-[Muthi'a, Quality & Development Department] — June 4, 2026, 00:13 UTC
+[Muthi'a, Quality & Development Department] - June 4, 2026, 00:13 UTC
 Su VPS KVM 8 (45.132.241.248) fue suspendido administrativamente debido a un
-uso sostenido de la CPU que superó el umbral establecido por nuestros sistemas
-de protección de recursos. Específicamente, nuestros sistemas detectaron un
-uso elevado de la CPU durante un período continuo superior a 180 minutos, lo
-que activa una restricción temporal de la CPU para garantizar la estabilidad
-del servicio para todos los CLIENTES EN EL MISMO NODO FÍSICO.
+uso sostenido de la CPU que supero el umbral establecido por nuestros sistemas
+de proteccion de recursos. Especificamente, nuestros sistemas detectaron un
+uso elevado de la CPU durante un periodo continuo superior a 180 minutos, lo
+que activa una restriccion temporal de la CPU para garantizar la estabilidad
+del servicio para todos los CLIENTES EN EL MISMO NODO FISICO.
 
-★★★★★ CONTRADICTION: Muthi'a claims suspension was for CPU >180 min.
-         Earlier Aymene said it was due to "abuse report."
-         Earlier Aymene retracted "abuse report" and said it was
-         "uso elevado afectando al host."
-         Three different explanations in under 6 hours. ★★★★★
+***** CONTRADICTION: Muthi'a claims suspension was for CPU >180 min.
+         Aymene said "abuse report." Aymene retracted and said "high CPU
+         affecting shared host." Three different causes in under 6 hours. *****
 
-Esto está cubierto por la Sección 6.4 de nuestro Acuerdo de Términos de
-Servicio Universales, que prohíbe el uso de los Servicios de una manera que
-contenga o instale cualquier código, archivo o programa diseñado para, o
-capaz de, utilizar muchos recursos, interrumpir, dañar o limitar la
+Esto esta cubierto por la Seccion 6.4 de nuestro Acuerdo de Terminos de
+Servicio Universales, que prohibe el uso de los Servicios de una manera que
+contenga o instale cualquier codigo, archivo o programa disenado para, o
+capaz de, utilizar muchos recursos, interrumpir, danar o limitar la
 funcionalidad de cualquier software o hardware.
 
 Tenga en cuenta que nuestros servicios VPS son AUTOGESTIONADOS: la
-configuración y optimización de los procesos que se ejecutan dentro del
+configuracion y optimizacion de los procesos que se ejecutan dentro del
 servidor son responsabilidad del cliente.
 
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
 SECTION 6: FORENSIC REBUTTAL TO MUTHI'A
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
 
-[User] — June 4, 2026, 08:08 UTC (response to Muthi'a's email)
-Ustedes afirman "nuestros servicios VPS son autogestionados". Si el servidor
+[User] - June 4, 2026, 08:08 UTC (response to Muthi'a's email)
+Ustedes afirman "nuestros servicios VPS son autogestionados." Si el servidor
 es genuinamente autogestionado, les exijo que expliquen:
 
 - crashkernel=512M: Ustedes reservan 512 MB de la memoria RAM que yo pago
   para volcados del kernel. Si hay un kernel panic, Hostinger lee y extrae
   toda mi memoria con datos privados.
 
-- Driver virtio_balloon: Módulo activo a nivel de hipervisor que les permite
+- Driver virtio_balloon: Modulo activo a nivel de hipervisor que les permite
   sustraer memoria RAM en vivo sin registrarlo en mi panel.
 
 - Consola serie ttyS0: Servicio systemd-serial-getty corriendo 24/7. Una
   puerta trasera al hipervisor, sin registros auditables.
 
-- SonicPanel: Código PHP ofuscado/encriptado (ionCube) ejecutándose con
+- SonicPanel: Codigo PHP ofuscado/encriptado (ionCube) ejecutandose con
   privilegios de ROOT en cada arranque.
 
 Ustedes me suspenden por alcanzar el 100% de CPU, indicando que esto afecta
-a "clientes en el mismo nodo físico". Al admitir esto por escrito, USTEDES
-CONFIESAN QUE EL ENTORNO FÍSICO ES COMPARTIDO, contradiciendo la promesa
-de recursos "dedicados" y "garantizados".
+a "clientes en el mismo nodo fisico." Al admitir esto por escrito, USTEDES
+CONFIESAN QUE EL ENTORNO FISICO ES COMPARTIDO, contradiciendo la promesa
+de recursos "dedicados" y "garantizados."
 
 Comparativa forense:
 
-Característica Comercializada     Realidad Entregada
-────────────────────────────────  ─────────────────────────────────────────────
-8 vCPU "Dedicados"                ~6.3 vCPU reales. Steal time variable 0-53%.
-32 GB RAM "Garantizada"           OOM killer mató 18+ procesos. Balloon driver
-                                  activo.
-400 GB "NVMe"                     Disco QEMU HARDDISK IDE. Sectores 512 bytes.
-                                  NVMe falso. Emulación IDE limitada a 123 MB/s.
-Hardware Moderno / Seguro         BIOS QEMU: 01/04/2014. 12 años de
-                                  vulnerabilidades sin parchear.
+Caracteristica Comercializada   Realidad Entregada
+8 vCPU "Dedicados"              ~6.3 vCPU reales. Steal time variable 0-53%.
+32 GB RAM "Garantizada"         OOM killer mato 18+ procesos. Balloon driver
+                                activo.
+400 GB "NVMe"                   Disco QEMU HARDDISK IDE. Sectores 512 bytes.
+                                NVMe falso. Emulacion IDE limitada a 123 MB/s.
+Hardware Moderno / Seguro       BIOS QEMU: 01/04/2014. 12 anos de
+                                vulnerabilidades sin parchear.
 
-¿En qué parte de sus Términos indican que engañarán a los usuarios ofreciendo
+En que parte de sus Terminos indican que enganaran a los usuarios ofreciendo
 "400 GB NVMe" para luego instalar discos virtualizados IDE obsoletos de 1996?
 
-¿La Sección 6.4 prohíbe que el cliente use el 100% de recursos pagados porque
+La Seccion 6.4 prohibe que el cliente use el 100% de recursos pagados porque
 su Steal Time del 53% y su hipervisor emulado no soportan la carga real?
 
-Lejos de un entorno "aislado y seguro", me entregaron:
-- Backdoor Root: Código PHP ofuscado corriendo como root
-- Más de 20 puertos pre-abiertos sin consentimiento (sendmail, rpcbind, gssproxy)
+Lejos de un entorno "aislado y seguro," me entregaron:
+- Backdoor Root: Codigo PHP ofuscado corriendo como root
+- Mas de 20 puertos pre-abiertos sin consentimiento (sendmail, rpcbind, gssproxy)
 
-Exijo una explicación técnica por escrito de un administrador nivel 3 (L3)
+Exijo una explicacion tecnica por escrito de un administrador nivel 3 (L3)
 justificando ttyS0, crashkernel=512M, virtio_balloon, BIOS de 2014, y la
-emulación de sectores 512B en un servicio publicitado como "NVMe dedicado".
+emulacion de sectores 512B en un servicio publicitado como "NVMe dedicado."
 
-═══════════════════════════════════════════════════════════════════════════════
-SECTION 7: MUTHI'A — DETAILED RESOURCE DATA (CONTRADICTION #4)
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
+SECTION 7: MUTHI'A - SERVER USAGE DATA + OOM KILLER ADMISSION
+================================================================================
 
-[Muthi'a, Customer Success Team] — June 4, 2026, 23:55 UTC
-El nodo host funciona normalmente; no hay contención de recursos ni
-sobresaturación a nivel de infraestructura. No se detectaron procesos
+[Muthi'a, Customer Success Team] - June 4, 2026, 23:55 UTC
+El nodo host funciona normalmente; no hay contencion de recursos ni
+sobresaturacion a nivel de infraestructura. No se detectaron procesos
 maliciosos desde nuestro lado.
 
-★★★★★ CONTRADICTION: Muthi'a says "no resource contention" at host level,
-         yet the same agent previously said the suspension was due to
-         "uso elevado que AFECTABA a la estabilidad del nodo anfitrión"
-         and "clientes en el MISMO NODO FÍSICO." ★★★★★
+***** CONTRADICTION: Muthi'a says "no resource contention at host level"
+         yet previously said suspension was because CPU usage "was affecting
+         the stability of the host node" and "customers on the SAME PHYSICAL
+         NODE." *****
 
-Aquí tienes un resumen de tu panel de Server Usage durante 24 horas:
+Aqui tienes un resumen de tu panel de Server Usage durante 24 horas:
 
-- CPU: Sostenido al 100% durante todo el período de 24 horas; constante, sin
+- CPU: Sostenido al 100% durante todo el periodo de 24 horas; constante, sin
   picos, lo que sugiere un proceso persistente.
 
-- RAM: Estable en aproximadamente 15 GB hasta alrededor de las 4–5 a.m., luego
-  cayó drásticamente a ~2 GB. Esto es consistente con el OOM (Out of Memory)
+- RAM: Estable en aproximadamente 15 GB hasta alrededor de las 4-5 a.m., luego
+  cayo drasticamente a ~2 GB. Esto es consistente con el OOM (Out of Memory)
   killer terminando procesos debido al agotamiento de la memoria.
 
-- Espacio en disco: Estable en ~400 GB. Sin preocupación.
+- Espacio en disco: Estable en ~400 GB. Sin preocupacion.
 
-- Tráfico: Casi cero durante la mayor parte del día, luego pico pronunciado
-  al mismo tiempo que la caída de RAM. Tráfico saliente máximo ~700 KB,
+- Trafico: Casi cero durante la mayor parte del dia, luego pico pronunciado
+  al mismo tiempo que la caida de RAM. Trafico saliente maximo ~700 KB,
   entrante ~40 MB.
 
-★★★★★ ADMISSION: Own data confirms OOM killer terminated processes ★★★★★
-★★★★★ ADMISSION: Own data shows nearly zero network traffic, contradicting
-         the later claim that suspension was due to "abnormal outbound
-         network traffic" (see Section 9) ★★★★★
+***** ADMISSION: Hostinger's own Server Usage data confirms:
+         - CPU at 100% for 24 hours
+         - RAM killed by OOM killer (15GB to 2GB)
+         - Network traffic was NEARLY ZERO - directly contradicting
+           Carola's later claim of "abnormal outbound network traffic" *****
 
-He procedido a levantar la restricción de CPU por ahora. Ten en cuenta que
-podría volver a aplicarse en aproximadamente 1 hora si el uso de CPU sigue
+He procedido a levantar la restriccion de CPU por ahora. Ten en cuenta que
+podria volver a aplicarse en aproximadamente 1 hora si el uso de CPU sigue
 siendo alto.
 
-═══════════════════════════════════════════════════════════════════════════════
-SECTION 8: TEAM LEAD ESCALATION — RAMINTA
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
+SECTION 8: TEAM LEAD ESCALATION - RAMINTA
+================================================================================
 
-[Raminta, Team Lead] — June 5, 2026, 09:27 UTC
-Quiero pedirle disculpas sinceramente por todo el estrés que esta situación
-le ha causado. He escalado este caso a nuestro equipo técnico para una
-investigación completa.
+[Raminta, Team Lead] - June 5, 2026, 09:27 UTC
+Quiero pedirle disculpas sinceramente por todo el estres que esta situacion
+le ha causado. He escalado este caso a nuestro equipo tecnico para una
+investigacion completa.
 
-═══════════════════════════════════════════════════════════════════════════════
-SECTION 9: CAROLA — 5TH DIFFERENT CAUSE (CONTRADICTION #5)
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
+SECTION 9: CAROLA - 5TH DIFFERENT CAUSE (CONTRADICTION #5)
+================================================================================
 
-[Carola, Customer Success Team] — June 5, 2026, 12:37 UTC
-Nuestro equipo revisó su caso y mencionó que la suspensión se debió a una
-TASA DE TRÁFICO DE RED SALIENTE ANORMALMENTE ALTA y sostenida. Esto no está
+[Carola, Customer Success Team] - June 5, 2026, 12:37 UTC
+Nuestro equipo reviso su caso y menciono que la suspension se debio a una
+TASA DE TRAFICO DE RED SALIENTE ANORMALMENTE ALTA y sostenida. Esto no esta
 relacionado con el uso de la CPU.
 
-★★★★★ CONTRADICTION: 5 different explanations in 48 hours:
+***** CONTRADICTION: 5 different explanations in 48 hours:
          1. "Abuse report" (Aymene, Jun 3, 18:49)
-         2. "Abuse report was an error — it was high CPU" (Aymene, Jun 3, 18:56)
+         2. "Abuse report was an error - it was high CPU" (Aymene, Jun 3, 18:56)
          3. "CPU >180 minutes threshold" (Muthi'a, Jun 4, 00:13)
-         4. "Resource usage affecting host stability" (Muthi'a, Jun 4, 23:55)
-         5. "Abnormal outbound network traffic rate" (Carola, Jun 5, 12:37) ★★★★★
+         4. "No resource contention exists" (Muthi'a, Jun 4, 23:55)
+         5. "Abnormal outbound network traffic rate" (Carola, Jun 5, 12:37) *****
 
-Con respecto a los componentes mencionados en su informe —crashkernel, balloon
-driver, consola serie, firmware, disco virtualizado— TODOS ELLOS SON PARTES
-ESTÁNDAR DE LA VIRTUALIZACIÓN KVM. Cada VPS en nuestra plataforma los
-incluye. No son herramientas de monitoreo, no son puertas traseras de ningún
+Con respecto a los componentes mencionados en su informe - crashkernel, balloon
+driver, consola serie, firmware, disco virtualizado - TODOS ELLOS SON PARTES
+ESTANDAR DE LA VIRTUALIZACION KVM. Cada VPS en nuestra plataforma los
+incluye. No son herramientas de monitoreo, no son puertas traseras de ningun
 tipo.
 
-★★★★★ ADMISSION: Carola confirms all components exist on every VPS.
-         Does not address why they are not disclosed to customers. ★★★★★
+***** ADMISSION: Carola confirms all components exist on every VPS.
+         Does not address why they are not disclosed to customers. *****
 
 Hostinger no instala ni administra software dentro del VPS. Usted tiene
 control total sobre todo lo que hay dentro del VPS.
 
-No accedemos ni modificamos nada dentro de su VPS. La capa de virtualización
+No accedemos ni modificamos nada dentro de su VPS. La capa de virtualizacion
 es lo que hace que su VPS funcione como un servidor aislado y es administrada
 por nosotros solo a nivel de infraestructura, no dentro de su sistema
 operativo.
 
-═══════════════════════════════════════════════════════════════════════════════
-SECTION 10: SUMMARY OF SUPPORT PERSONNEL
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
+SECTION 10: CUSTOMER'S FINAL STATEMENT
+================================================================================
 
-Agent       Role                    Dates Active    Key Statement
-─────────────────────────────────  ──────────────  ────────────────────────────
-Kodee       Chatbot                Jun 3           Unable to identify VPS status
-Aymene      Support Agent          Jun 3, 18:43    Fabricated "abuse report,"
-                                                   retracted 7 minutes later
-Aymene      Support Agent          Jun 3, 18:56    "entorno físico compartido"
-Muthi'a     Quality & Development  Jun 4, 00:13    CPU >180 min suspension
-Muthi'a     Customer Success       Jun 4, 23:55    Own data: CPU 100% 24h,
-                                                   RAM 15GB→2GB, OOM killer,
-                                                   traffic nearly zero
-Carola      Customer Success       Jun 4, 13:16    Escalation acknowledgment
-Carola      Customer Success       Jun 5, 12:37    5th cause: "network traffic"
-Raminta     Team Lead              Jun 5, 09:27    Apology and escalation
-
-═══════════════════════════════════════════════════════════════════════════════
-SECTION 11: 5 CONTRADICTORY EXPLANATIONS FOR THE SAME SUSPENSION
-═══════════════════════════════════════════════════════════════════════════════
-
-#   Date (UTC)       Agent     Cause Given
-──  ───────────────  ────────  ─────────────────────────────────────────────────
-1   Jun 3, 18:49     Aymene    "Informe de abuso" (abuse report)
-2   Jun 3, 18:56     Aymene    RETRACTS #1: "No existe informe de abuso.
-                                Fue un error. Fue por uso elevado de CPU
-                                afectando al entorno físico COMPARTIDO."
-3   Jun 4, 00:13     Muthi'a   "CPU >180 minutos continuos. Clientes en el
-                                mismo nodo físico."
-4   Jun 4, 23:55     Muthi'a   "No hay contención de recursos a nivel de
-                                infraestructura." (contradicts #2 and #3)
-5   Jun 5, 12:37     Carola    "Tasa de tráfico de red saliente anormalmente
-                                alta y sostenida." (contradicts Muthi'a's own
-                                data showing "tráfico: casi cero")
-
-None of these 5 explanations was accompanied by evidence. The only explanation
-supported by documentation — the fabricated "abuse report" — was explicitly
-retracted by the agent who made it.
-
-═══════════════════════════════════════════════════════════════════════════════
-SECTION 12: CUSTOMER'S FINAL STATEMENT
-═══════════════════════════════════════════════════════════════════════════════
-
-[User] — June 5, 2026, 10:24 UTC
+[User] - June 5, 2026, 10:24 UTC
 Si en 24 horas no hay respuesta, las preguntas que personas como el Sr.
-Yurevich / SegmentStream ya están haciendo tendrán respuestas. Respuestas
-técnicas. Con evidencia. Con nombres y fechas.
+Yurevich / SegmentStream ya estan haciendo tendran respuestas. Respuestas
+tecnicas. Con evidencia. Con nombres y fechas.
 
 No es una amenaza. Es la consecuencia de vender una cosa y entregar otra.
-Ustedes decidieron ese camino. Yo solo estoy señalando dónde termina.
+Ustedes decidieron ese camino. Yo solo estoy senalando donde termina.
 
-═══════════════════════════════════════════════════════════════════════════════
+================================================================================
 END OF FORENSIC TRANSCRIPT EXCERPTS
-═══════════════════════════════════════════════════════════════════════════════
-
-
+================================================================================

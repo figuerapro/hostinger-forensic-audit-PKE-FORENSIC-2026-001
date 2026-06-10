@@ -1,4 +1,4 @@
-# 06 — Regulatory Violations
+# 06 "” Regulatory Violations
 
 This document identifies applicable regulations in relevant jurisdictions and maps the documented findings to specific legal provisions. This is a technical analysis, not legal advice. Consult qualified legal counsel in the relevant jurisdiction before initiating any proceeding.
 
@@ -8,7 +8,7 @@ This document identifies applicable regulations in relevant jurisdictions and ma
 
 Hostinger International Ltd. is headquartered in Kaunas, Lithuania (Jonavos g. 60c, LT-44192), and operates within the European Union's regulatory framework.
 
-### Digital Services Act — Regulation (EU) 2022/2065
+### Digital Services Act "” Regulation (EU) 2022/2065
 
 | Article | Requirement | Observed Violation |
 |---------|------------|-------------------|
@@ -16,20 +16,20 @@ Hostinger International Ltd. is headquartered in Kaunas, Lithuania (Jonavos g. 6
 | **Art. 21** | Providers must notify users of content moderation decisions or service restrictions with specific grounds for the decision. | No notification was issued before, during, or after the suspension. The customer discovered the suspension by attempting to access the VPS. |
 | **Art. 12** | Contact points must be provided for direct communication between users and the provider. | Support communications were evasive, contradictory, and ultimately resulted in a retracted justification. |
 
-### Unfair Commercial Practices Directive — 2005/29/EC
+### Unfair Commercial Practices Directive "” 2005/29/EC
 
 | Provision | Requirement | Observed Violation |
 |-----------|------------|-------------------|
 | **Art. 6(1)** | A commercial practice is misleading if it contains false information or deceives the average consumer regarding the main characteristics of the product. | Product pages claim "dedicated resources" and "exclusively yours." Support confirmed in writing that the "physical environment is shared." |
 | **Art. 6(1)(b)** | False claims about "the main characteristics of the product, such as its benefits, risks, execution, composition, accessories, after-sale customer assistance, complaint handling..." | "400 GB NVMe" vs. QEMU HARDDISK IDE at 108.7 MB/s. "32 TB bandwidth" vs. 1 Gbps pipe (mathematically unattainable). |
 
-### General Data Protection Regulation — Regulation (EU) 2016/679
+### General Data Protection Regulation "” Regulation (EU) 2016/679
 
 | Article | Requirement | Observed Violation |
 |---------|------------|-------------------|
-| **Art. 5(1)(c)** | Data minimization — personal data must be "adequate, relevant and limited to what is necessary." | Support agent reported real-time monitoring of CPU, RAM, and process-level metrics, indicating more extensive monitoring than necessary for service provision. |
+| **Art. 5(1)(c)** | Data minimization "” personal data must be "adequate, relevant and limited to what is necessary." | Support agent reported real-time monitoring of CPU, RAM, and process-level metrics, indicating more extensive monitoring than necessary for service provision. |
 | **Art. 6** | Processing must have a lawful basis. | Monitoring of customer VPS processes and resource consumption at the level described by support may exceed the lawful basis of "performance of a contract." |
-| **Art. 32** | Security of processing — appropriate technical and organizational measures. | Active ttyS0 serial console, crashkernel reservation, and balloon driver represent inadequate isolation between provider and customer data. |
+| **Art. 32** | Security of processing "” appropriate technical and organizational measures. | Active ttyS0 serial console, crashkernel reservation, and balloon driver represent inadequate isolation between provider and customer data. |
 
 ---
 
@@ -53,7 +53,7 @@ The VVTAT mediates consumer disputes, investigates unfair commercial practices, 
 
 ## 6.3 United States
 
-### Federal Trade Commission Act — 15 U.S.C. �Section  45 (Section 5)
+### Federal Trade Commission Act "” 15 U.S.C. ÂSection  45 (Section 5)
 
 | Provision | Requirement | Observed Violation |
 |-----------|------------|-------------------|
@@ -63,7 +63,7 @@ The VVTAT mediates consumer disputes, investigates unfair commercial practices, 
 
 ### State-Level Consumer Protection
 
-The customer entity (Panorama Makers Hub LLC) is registered in New Mexico, USA. New Mexico's Unfair Practices Act (NMSA �Section  57-12-1) prohibits "unfair or deceptive trade practices" including false representation of goods or services.
+The customer entity (Panorama Makers Hub LLC) is registered in New Mexico, USA. New Mexico's Unfair Practices Act (NMSA ÂSection  57-12-1) prohibits "unfair or deceptive trade practices" including false representation of goods or services.
 
 **New Mexico Attorney General Consumer Protection:** https://www.nmag.gov/contact-us/file-a-complaint/
 
@@ -73,12 +73,12 @@ The customer entity (Panorama Makers Hub LLC) is registered in New Mexico, USA. 
 
 Hostinger operations, UAB holds ICANN accreditation as a domain name registrar (IANA ID: 1636).
 
-### RAA 2013 — Specifications
+### RAA 2013 "” Specifications
 
 | Provision | Requirement |
 |-----------|------------|
-| **Specification 4, �Section  2.2** | Registrar must maintain accurate contact information and respond to abuse complaints within reasonable timeframes. |
-| **Specification 4, �Section  2.5** | Registrar must investigate and respond to reports of inaccurate registration data. |
+| **Specification 4, ÂSection  2.2** | Registrar must maintain accurate contact information and respond to abuse complaints within reasonable timeframes. |
+| **Specification 4, ÂSection  2.5** | Registrar must investigate and respond to reports of inaccurate registration data. |
 
 While ICANN's jurisdiction is limited to domain registration and DNS abuse (phishing, malware, botnets, pharming, spam), the documented pattern of misrepresentation regarding the infrastructure underlying registered domains may constitute a material concern under the registrar's obligation to operate with integrity.
 
@@ -90,25 +90,25 @@ While ICANN's jurisdiction is limited to domain registration and DNS abuse (phis
 
 | # | Jurisdiction | Law/Regulation | Violation | Evidence Reference |
 |---|-------------|---------------|-----------|-------------------|
-| 1 | EU | DSA Art. 17 | Suspension without statement of reasons | �Section 5, Acknowledgments 1-2 |
-| 2 | EU | DSA Art. 21 | No notification of service restriction | �Section 5, Acknowledgment 1 |
-| 3 | EU | UCPD 2005/29 Art. 6(1) | False advertising ("dedicated" vs. shared) | �Section 3.4, Acknowledgment 3 |
-| 4 | EU | UCPD 2005/29 Art. 6(1)(b) | Misleading product claims (NVMe, bandwidth) | �Section 3.6, �Section 3.7 |
-| 5 | EU | GDPR Art. 5(1)(c) | Disproportionate monitoring | �Section 3.4, Acknowledgment 4 |
-| 6 | EU | GDPR Art. 32 | Inadequate security measures (ttyS0, crashkernel) | �Section 3.8 |
-| 7 | Lithuania | VVTAT consumer law | Misleading advertising, unjustified restriction | �Section 3.4, Acknowledgment 3 |
-| 8 | USA | FTC Act �Section 5 | Deceptive acts or practices | �Section 3.10 (summary comparison) |
-| 9 | USA (NM) | NM Unfair Practices Act | False representation of services | �Section 3.10 |
-| 10 | Global | ICANN RAA Spec 4 | Registrar integrity obligations | �Section 3 entire |
+| 1 | EU | DSA Art. 17 | Suspension without statement of reasons | ÂSection 5, Acknowledgments 1-2 |
+| 2 | EU | DSA Art. 21 | No notification of service restriction | ÂSection 5, Acknowledgment 1 |
+| 3 | EU | UCPD 2005/29 Art. 6(1) | False advertising ("dedicated" vs. shared) | ÂSection 3.4, Acknowledgment 3 |
+| 4 | EU | UCPD 2005/29 Art. 6(1)(b) | Misleading product claims (NVMe, bandwidth) | ÂSection 3.6, ÂSection 3.7 |
+| 5 | EU | GDPR Art. 5(1)(c) | Disproportionate monitoring | ÂSection 3.4, Acknowledgment 4 |
+| 6 | EU | GDPR Art. 32 | Inadequate security measures (ttyS0, crashkernel) | ÂSection 3.8 |
+| 7 | Lithuania | VVTAT consumer law | Misleading advertising, unjustified restriction | ÂSection 3.4, Acknowledgment 3 |
+| 8 | USA | FTC Act ÂSection 5 | Deceptive acts or practices | ÂSection 3.10 (summary comparison) |
+| 9 | USA (NM) | NM Unfair Practices Act | False representation of services | ÂSection 3.10 |
+| 10 | Global | ICANN RAA Spec 4 | Registrar integrity obligations | ÂSection 3 entire |
 
 ---
 
 ## 6.6 Recommended Escalation Sequence
 
-1. **VVTAT (Lithuania)** — Home-country regulator, binding authority, fastest response window
-2. **FTC (USA)** — Federal consumer protection, investigation precedent for tech/hosting
-3. **EU DSA Coordinator (Lithuania)** — Digital Services Act enforcement within Member State
-4. **GDPR Supervisory Authority (VDAI, Lithuania)** — Data protection violation regarding unauthorized monitoring
-5. **ICANN Contractual Compliance** — Registrar-specific obligations regarding integrity of service
+1. **VVTAT (Lithuania)** "” Home-country regulator, binding authority, fastest response window
+2. **FTC (USA)** "” Federal consumer protection, investigation precedent for tech/hosting
+3. **EU DSA Coordinator (Lithuania)** "” Digital Services Act enforcement within Member State
+4. **GDPR Supervisory Authority (VDAI, Lithuania)** "” Data protection violation regarding unauthorized monitoring
+5. **ICANN Contractual Compliance** "” Registrar-specific obligations regarding integrity of service
 
 

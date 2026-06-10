@@ -1,8 +1,8 @@
-# 03 — Infrastructure Analysis: Sold vs. Delivered
+# 03 "” Infrastructure Analysis: Sold vs. Delivered
 
 ---
 
-## 3.1 Service Plan — Advertised Specifications
+## 3.1 Service Plan "” Advertised Specifications
 
 The KVM 8 plan product page represents the following provisioning:
 
@@ -13,7 +13,7 @@ The KVM 8 plan product page represents the following provisioning:
 | Storage | 400 GB NVMe SSD |
 | Bandwidth | 32 TB/month |
 | Virtualization | KVM, full root access |
-| Isolation | "Dedicated resources — exclusively yours. No sharing with other users." |
+| Isolation | "Dedicated resources "” exclusively yours. No sharing with other users." |
 
 ---
 
@@ -43,11 +43,11 @@ L2 cache:              2 MiB (8 instances)
 L3 cache:              32 MiB (4 instances)
 ```
 
-The `4 sockets × 1 core × 2 threads` topology indicates a paravirtualized CPU layout — the guest sees 4 virtual sockets, each with 1 core and 2 threads, rather than the native Zen 3 topology.
+The `4 sockets Ã— 1 core Ã— 2 threads` topology indicates a paravirtualized CPU layout "” the guest sees 4 virtual sockets, each with 1 core and 2 threads, rather than the native Zen 3 topology.
 
 ---
 
-## 3.3 Virtualization Architecture — Legacy Hardware Emulation
+## 3.3 Virtualization Architecture "” Legacy Hardware Emulation
 
 Hostinger markets "modern KVM virtualization" and "cutting-edge hardware." The hypervisor configuration identified during the audit tells a different story.
 
@@ -60,8 +60,8 @@ Hostinger markets "modern KVM virtualization" and "cutting-edge hardware." The h
 | BIOS/Firmware | QEMU Standard PC (i440FX + PIIX, 1996) | BIOS build date: 01/04/2014 | **12 years** |
 | Storage transport | IDE (PATA) emulation | 1996 | **30 years** |
 | Sector size | 512 bytes | IDE legacy | Obsolete (NVMe native: 4,096 bytes) |
-| Network interface | `virtio_net` (paravirtualized bridge) | — | — |
-| CPU emulation layer | Intel RAPL (Running Average Power Limit) interface present on AMD EPYC silicon | Cross-architecture mismatch | — |
+| Network interface | `virtio_net` (paravirtualized bridge) | "” | "” |
+| CPU emulation layer | Intel RAPL (Running Average Power Limit) interface present on AMD EPYC silicon | Cross-architecture mismatch | "” |
 
 ### Historical Context
 
@@ -75,7 +75,7 @@ The Intel i440FX chipset was released in **1996** alongside the Intel Pentium Pr
 - NVMe specification (2011)
 - The AMD EPYC platform on which it is being emulated (2019, Zen 2 / 2021, Zen 3)
 
-The PIIX3 (PCI ISA IDE Xcelerator) southbridge was Intel's third-generation PCI-to-ISA bridge, also from 1996. Its IDE controller implements the ATA-2 (EIDE) specification with a maximum theoretical throughput of 33 MB/s in UDMA mode 2 — although the virtualized implementation on modern QEMU can exceed this through paravirtualization.
+The PIIX3 (PCI ISA IDE Xcelerator) southbridge was Intel's third-generation PCI-to-ISA bridge, also from 1996. Its IDE controller implements the ATA-2 (EIDE) specification with a maximum theoretical throughput of 33 MB/s in UDMA mode 2 "” although the virtualized implementation on modern QEMU can exceed this through paravirtualization.
 
 ### Why It Matters
 
@@ -87,7 +87,7 @@ This is not merely a cosmetic issue. The choice of i440FX + PIIX3 as the virtual
 
 3. **The BIOS firmware from 2014 has been unpatched for 12 years.** QEMU's default SeaBIOS build for the i440FX machine type has accumulated 12 years of undisclosed and unpatched firmware vulnerabilities. The firmware environment a customer's operating system boots into is older than the AlmaLinux 9 distribution running on it.
 
-4. **Intel RAPL on AMD silicon is a virtualization artifact.** The Running Average Power Limit (RAPL) interface is an Intel-specific power management feature. Its presence on an AMD EPYC host indicates QEMU is presenting an Intel CPU feature set to a guest running on AMD hardware — a cross-architecture virtualization mismatch that can cause unpredictable behavior in power-aware workloads and indicates the virtualization layer was configured with a generic, non-hardware-matched VM template.
+4. **Intel RAPL on AMD silicon is a virtualization artifact.** The Running Average Power Limit (RAPL) interface is an Intel-specific power management feature. Its presence on an AMD EPYC host indicates QEMU is presenting an Intel CPU feature set to a guest running on AMD hardware "” a cross-architecture virtualization mismatch that can cause unpredictable behavior in power-aware workloads and indicates the virtualization layer was configured with a generic, non-hardware-matched VM template.
 
 ### Comparative Context
 
@@ -109,11 +109,11 @@ The `top` and `/proc/stat` interfaces reported a consistent **steal time of 21.1
 
 ### Interpretation
 
-Steal time measures the percentage of CPU time a virtual CPU waits for a physical CPU while the hypervisor services another virtual processor. A non-zero steal time indicates the physical host is overcommitted — more virtual CPUs have been allocated across all tenants than physical cores exist.
+Steal time measures the percentage of CPU time a virtual CPU waits for a physical CPU while the hypervisor services another virtual processor. A non-zero steal time indicates the physical host is overcommitted "” more virtual CPUs have been allocated across all tenants than physical cores exist.
 
 ### Measured Steal Time Range
 
-Steal time was observed across the full operational window (approximately 5 hours of sustained load). The value was not constant — it fluctuated based on the activity of other tenants on the shared physical host:
+Steal time was observed across the full operational window (approximately 5 hours of sustained load). The value was not constant "” it fluctuated based on the activity of other tenants on the shared physical host:
 
 | Period | Steal Time | Condition |
 |--------|:----------:|-----------|
@@ -132,9 +132,9 @@ Steal time was observed across the full operational window (approximately 5 hour
 | vCPUs consumed by hypervisor (peak) | ~4.2 |
 | Implication | The hypervisor can silently reclaim over HALF of the purchased CPU at will, without notification |
 
-A 53% steal ceiling means that at moments of peak neighboring activity, a customer paying for 8 vCPUs receives the effective throughput of fewer than 4 physical cores. The hosting provider determines when this occurs — the customer has no visibility, no notification, and no recourse.
+A 53% steal ceiling means that at moments of peak neighboring activity, a customer paying for 8 vCPUs receives the effective throughput of fewer than 4 physical cores. The hosting provider determines when this occurs "” the customer has no visibility, no notification, and no recourse.
 
-Under the marketed "dedicated resources" claim, steal time should be 0% at all times — the same result observed on AWS Nitro (c7gn) and Azure Hyper-V (L4aos_v4) instances during comparative benchmarks across identical workloads.
+Under the marketed "dedicated resources" claim, steal time should be 0% at all times "” the same result observed on AWS Nitro (c7gn) and Azure Hyper-V (L4aos_v4) instances during comparative benchmarks across identical workloads.
 
 ---
 
@@ -153,7 +153,7 @@ Under the marketed "dedicated resources" claim, steal time should be 0% at all t
 
 The VirtIO balloon driver allows the hypervisor to dynamically reclaim memory from the guest without notification. When loaded, the hosting provider can reduce the effective RAM available to the VPS at any time.
 
-The kernel boot parameter `crashkernel=512M` reserves 512 MB of RAM for crash dump capture by the host — memory the customer cannot use but the provider can access for forensic analysis.
+The kernel boot parameter `crashkernel=512M` reserves 512 MB of RAM for crash dump capture by the host "” memory the customer cannot use but the provider can access for forensic analysis.
 
 ---
 
@@ -163,13 +163,13 @@ The kernel boot parameter `crashkernel=512M` reserves 512 MB of RAM for crash du
 
 | Parameter | Advertised | Actual | Delta |
 |-----------|-----------|--------|-------|
-| Technology | NVMe SSD | QEMU HARDDISK (IDE) | — |
-| Device node | — | `/dev/sda` | — |
-| Controller | — | Intel 82371SB PIIX3 (1996) | — |
-| I/O scheduler | — | `none` (no optimization) | — |
-| Sector size | — | 512 bytes (IDE legacy) | — |
+| Technology | NVMe SSD | QEMU HARDDISK (IDE) | "” |
+| Device node | "” | `/dev/sda` | "” |
+| Controller | "” | Intel 82371SB PIIX3 (1996) | "” |
+| I/O scheduler | "” | `none` (no optimization) | "” |
+| Sector size | "” | 512 bytes (IDE legacy) | "” |
 | Expected write speed | 3,000+ MB/s (NVMe) | 108.7 MB/s (avg) | -96.4% |
-| Peak write speed | — | 159 MB/s | -94.7% |
+| Peak write speed | "” | 159 MB/s | -94.7% |
 
 ### Benchmark Methodology
 
@@ -185,7 +185,7 @@ The kernel boot parameter `crashkernel=512M` reserves 512 MB of RAM for crash du
 
 | Timestamp (UTC) | Elapsed | Disk Used | Written | Speed |
 |----------------|---------|-----------|---------|-------|
-| 17:20 | 0 min | 23 GB | 0 GB | — |
+| 17:20 | 0 min | 23 GB | 0 GB | "” |
 | 17:37 | 17 min | 58 GB | 35 GB | 35 MB/s |
 | 17:40 | 20 min | 93 GB | 70 GB | 59 MB/s |
 | 17:44 | 24 min | 150 GB | 127 GB | 90 MB/s |
@@ -201,13 +201,13 @@ The kernel boot parameter `crashkernel=512M` reserves 512 MB of RAM for crash du
 
 | Technology | Typical Sustained Write | Source |
 |-----------|------------------------|--------|
-| Consumer NVMe SSD (PCIe 3.0 ×4) | 2,000–3,500 MB/s | Industry benchmarks |
-| Enterprise NVMe (PCIe 4.0 ×4) | 4,000–7,000 MB/s | Industry benchmarks |
-| SATA SSD | 500–550 MB/s | Industry benchmarks |
-| 7200 RPM HDD | 120–160 MB/s | Industry benchmarks |
+| Consumer NVMe SSD (PCIe 3.0 Ã—4) | 2,000"“3,500 MB/s | Industry benchmarks |
+| Enterprise NVMe (PCIe 4.0 Ã—4) | 4,000"“7,000 MB/s | Industry benchmarks |
+| SATA SSD | 500"“550 MB/s | Industry benchmarks |
+| 7200 RPM HDD | 120"“160 MB/s | Industry benchmarks |
 | **Hostinger KVM 8 ("400 GB NVMe")** | **108.7 MB/s** | This audit |
 
-The measured throughput of 108.7 MB/s is consistent with a virtual disk backed by shared rotational storage (HDD) or a heavily throttled QEMU qcow2 file on a multi-tenant storage pool — not any form of NVMe flash storage.
+The measured throughput of 108.7 MB/s is consistent with a virtual disk backed by shared rotational storage (HDD) or a heavily throttled QEMU qcow2 file on a multi-tenant storage pool "” not any form of NVMe flash storage.
 
 ---
 
@@ -218,15 +218,15 @@ The measured throughput of 108.7 MB/s is consistent with a virtual disk backed b
 | Parameter | Advertised | Actual |
 |-----------|-----------|--------|
 | Monthly transfer | 32 TB | Achievable on a dedicated 1 Gbps pipe, but the pipe is shared among multiple tenants |
-| Interface type | — | `virtio_net` (paravirtualized bridge) |
-| Observed maximum throughput | — | ~1 Gbps |
-| 32 TB at 1 Gbps continuous | — | Requires ~71 hours (9.9% of monthly capacity at full saturation) |
-| Theoretical monthly ceiling at 1 Gbps (dedicated) | — | ~324 TB |
-| Realistic ceiling (shared bridge, 5 tenants) | — | ~65 TB total / 5 = ~13 TB per VPS |
+| Interface type | "” | `virtio_net` (paravirtualized bridge) |
+| Observed maximum throughput | "” | ~1 Gbps |
+| 32 TB at 1 Gbps continuous | "” | Requires ~71 hours (9.9% of monthly capacity at full saturation) |
+| Theoretical monthly ceiling at 1 Gbps (dedicated) | "” | ~324 TB |
+| Realistic ceiling (shared bridge, 5 tenants) | "” | ~65 TB total / 5 = ~13 TB per VPS |
 
 ### Analysis
 
-At 1 Gbps dedicated, 32 TB/month represents approximately 99 Mbps sustained — roughly 9.9% of the pipe's capacity. This is technically achievable on a dedicated interface. However, Hostinger's own support personnel confirmed the existence of "other users on the same infrastructure" and "customers on the same physical node" — establishing that the 1 Gbps pipe is shared infrastructure, not a dedicated connection.
+At 1 Gbps dedicated, 32 TB/month represents approximately 99 Mbps sustained "” roughly 9.9% of the pipe's capacity. This is technically achievable on a dedicated interface. However, Hostinger's own support personnel confirmed the existence of "other users on the same infrastructure" and "customers on the same physical node" "” establishing that the 1 Gbps pipe is shared infrastructure, not a dedicated connection.
 
 Under realistic shared conditions (5 tenants on a 1 Gbps pipe, conservatively), each tenant receives approximately 200 Mbps, yielding a practical monthly ceiling of ~65 TB/mol total / 5 tenants = **~13 TB per tenant.** At this effective throughput, the advertised 32 TB is not achievable.
 
@@ -253,8 +253,8 @@ The following configurations were identified on the VPS at the host/hypervisor l
 | Metric | hPanel Dashboard | Kernel Measurement (`top`/`/proc/stat`) | Delta |
 |--------|-----------------|----------------------------------------|-------|
 | CPU utilization | 9% | 98% | +89 pp |
-| RAM utilization | — | 30/31 GB | — |
-| Disk utilization | — | 399/400 GB | — |
+| RAM utilization | "” | 30/31 GB | "” |
+| Disk utilization | "” | 399/400 GB | "” |
 
 The hPanel dashboard underreported CPU utilization by approximately 89 percentage points during the measurement period. The reported 9% figure contradicted the kernel-level measurement of 98% (user + system combined), indicating that the dashboard does not accurately represent real-time resource consumption.
 
@@ -280,7 +280,7 @@ The hPanel dashboard underreported CPU utilization by approximately 89 percentag
 
 ---
 
-## 3.11 Systemic Architecture Convergence — Shared Infrastructure Across All Service Tiers
+## 3.11 Systemic Architecture Convergence "” Shared Infrastructure Across All Service Tiers
 
 The forensic audit was conducted across **three independent Hostinger services** purchased through separate accounts, at different price points, in different geographic regions:
 
@@ -290,19 +290,19 @@ The forensic audit was conducted across **three independent Hostinger services**
 | **server1165** | Shared Hosting | ~$2.99 | 194.59.166.148 | Lithuania (EU) |
 | **server1168** | Shared Hosting | ~$2.99 | 195.35.39.114 | Phoenix, AZ, USA |
 
-Despite the 4.7× price difference between the KVM 8 VPS and the entry-level shared hosting plans, all three services converge on **identical infrastructure signatures**:
+Despite the 4.7Ã— price difference between the KVM 8 VPS and the entry-level shared hosting plans, all three services converge on **identical infrastructure signatures**:
 
 ### 3.11.1 Processor Convergence
 
 ```
-[VPS KVM 8] ──────────┐
-                       │
-[server1165] ──────────┼──> AMD EPYC 7543P 32-Core Processor (Zen 3 Milan)
-                       │    32 physical cores shared across all tenants
-[server1168] ──────────┘
+[VPS KVM 8] â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                       â”‚
+[server1165] â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€> AMD EPYC 7543P 32-Core Processor (Zen 3 Milan)
+                       â”‚    32 physical cores shared across all tenants
+[server1168] â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
-All three services — regardless of product tier, price point, or marketing name — execute on **exactly the same AMD EPYC 7543P physical processor.** The $13.99 "dedicated KVM" VPS and the $2.99 shared hosting plan operate on identical silicon, managed by the same hypervisor stack. The only difference between the products is the vCPU allocation number displayed in the hPanel — not the underlying hardware.
+All three services "” regardless of product tier, price point, or marketing name "” execute on **exactly the same AMD EPYC 7543P physical processor.** The $13.99 "dedicated KVM" VPS and the $2.99 shared hosting plan operate on identical silicon, managed by the same hypervisor stack. The only difference between the products is the vCPU allocation number displayed in the hPanel "” not the underlying hardware.
 
 ### 3.11.2 Common Intrusion Vectors
 
@@ -310,14 +310,14 @@ Every audited service presented the same provider-side access mechanisms:
 
 | Undisclosed access mechanism | KVM 8 | server1165 | server1168 |
 |--------------------------|:-----:|:----------:|:----------:|
-| **ttyS0 serial console** | ✓ Active | ✓ Active | ✓ Active |
-| **crashkernel=512M** RAM reservation | ✓ Present | ✓ Present | ✓ Present |
-| **virtio_balloon driver** loaded | ✓ Active | ✓ Active | ✓ Active |
-| **BIOS QEMU 2014-04-01** (unpatched) | ✓ | ✓ | ✓ |
-| **i440FX + PIIX3 chipset** (1996) | ✓ | ✓ | ✓ |
-| **Intel RAPL on AMD EPYC** mismatch | ✓ | ✓ | ✓ |
+| **ttyS0 serial console** | âœ“ Active | âœ“ Active | âœ“ Active |
+| **crashkernel=512M** RAM reservation | âœ“ Present | âœ“ Present | âœ“ Present |
+| **virtio_balloon driver** loaded | âœ“ Active | âœ“ Active | âœ“ Active |
+| **BIOS QEMU 2014-04-01** (unpatched) | âœ“ | âœ“ | âœ“ |
+| **i440FX + PIIX3 chipset** (1996) | âœ“ | âœ“ | âœ“ |
+| **Intel RAPL on AMD EPYC** mismatch | âœ“ | âœ“ | âœ“ |
 
-This is not a misconfiguration. This is not an isolated provisioning error on a single degraded node. This is a **standardized deployment template** applied uniformly across Hostinger's entire service catalog — from $2.99 shared hosting to $13.99 KVM VPS — with zero disclosure to any customer.
+This is not a misconfiguration. This is not an isolated provisioning error on a single degraded node. This is a **standardized deployment template** applied uniformly across Hostinger's entire service catalog "” from $2.99 shared hosting to $13.99 KVM VPS "” with zero disclosure to any customer.
 
 ### 3.11.3 Consistent Metric Discrepancy
 
@@ -325,7 +325,7 @@ The hPanel dashboard across all three services displayed CPU utilization metrics
 
 | Service | hPanel CPU % | Kernel CPU % (`top`, `/proc/stat`) | Delta |
 |---------|:-----------:|:---:|:-----:|
-| KVM 8 | 9% | 98% | −89 pp |
+| KVM 8 | 9% | 98% | âˆ’89 pp |
 | server1165 | Smoothed / underreported | Real saturation detected | Consistent pattern |
 | server1168 | Smoothed / underreported | Real saturation detected | Consistent pattern |
 
@@ -333,12 +333,12 @@ The dashboard metric smoothing is not an isolated bug on one server. It is a sys
 
 ### 3.11.4 Conclusion of Convergence Analysis
 
-The forensic correlation of data from three independent services — purchased at different price points, in different geographic regions, through separate accounts — demonstrates that the documented infrastructure practices are **not a technical defect on a degraded server.** They constitute a **corporate design pattern** for selling resources that do not exist as advertised, enforced through:
+The forensic correlation of data from three independent services "” purchased at different price points, in different geographic regions, through separate accounts "” demonstrates that the documented infrastructure practices are **not a technical defect on a degraded server.** They constitute a **corporate design pattern** for selling resources that do not exist as advertised, enforced through:
 
-1. **Identical oversubscribed silicon** — All services on the same AMD EPYC 7543P physical processor, regardless of product tier or monthly cost.
-2. **Standardized provider access** — ttyS0 serial console, crashkernel memory reservation, and balloon driver deployed across every audited service without customer disclosure.
-3. **Uniform metric concealment** — hPanel dashboards consistently underreporting CPU usage by significant margins across all service tiers.
+1. **Identical oversubscribed silicon** "” All services on the same AMD EPYC 7543P physical processor, regardless of product tier or monthly cost.
+2. **Standardized provider access** "” ttyS0 serial console, crashkernel memory reservation, and balloon driver deployed across every audited service without customer disclosure.
+3. **Uniform metric concealment** "” hPanel dashboards consistently underreporting CPU usage by significant margins across all service tiers.
 
-The KVM 8 VPS, sold as having "dedicated resources — exclusively yours," shares its processor, its undisclosed hypervisor access configuration, and its metric-falsifying dashboard with $2.99 shared hosting accounts. The price difference does not buy different hardware. It buys a different number displayed in a control panel — on infrastructure that is functionally identical at the silicon level.
+The KVM 8 VPS, sold as having "dedicated resources "” exclusively yours," shares its processor, its undisclosed hypervisor access configuration, and its metric-falsifying dashboard with $2.99 shared hosting accounts. The price difference does not buy different hardware. It buys a different number displayed in a control panel "” on infrastructure that is functionally identical at the silicon level.
 
 

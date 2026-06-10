@@ -1,4 +1,4 @@
-# 08 — Evidence Ledger
+# 08 "” Evidence Ledger
 
 This document catalogs every piece of evidence referenced in the audit, with its cryptographic seals and verification instructions.
 
@@ -88,7 +88,7 @@ with open('seals/MANIFEST.txt') as f:
 | Date | Action | Operator |
 |------|--------|----------|
 | 2026-06-03 16:44 UTC | Initial benchmark captured | Automated (PKE Transporter) |
-| 2026-06-03 17:20–18:19 | Disk write benchmark captured | Automated (dd + telemetry) |
+| 2026-06-03 17:20"“18:19 | Disk write benchmark captured | Automated (dd + telemetry) |
 | 2026-06-03 19:28 | VPS suspended (custody interrupted) | Hostinger (administrative action) |
 | 2026-06-03 ~19:45 | Forensic report compiled | Auditor |
 | 2026-06-04 | Support Acknowledgments documented | Auditor (from chat transcripts) |
@@ -104,8 +104,8 @@ The primary evidence (benchmarks, support communications) was collected at the t
 
 This audit was conducted under the following forensic investigation standards:
 
-- **ISO/IEC 27037:2012** — Information technology — Security techniques — Guidelines for identification, collection, acquisition and preservation of digital evidence
-- **NIST SP 800-86** — Guide to Integrating Forensic Techniques into Incident Response
+- **ISO/IEC 27037:2012** "” Information technology "” Security techniques "” Guidelines for identification, collection, acquisition and preservation of digital evidence
+- **NIST SP 800-86** "” Guide to Integrating Forensic Techniques into Incident Response
 
 These standards govern the handling, preservation, and documentation of digital evidence to ensure its admissibility in legal and regulatory proceedings.
 

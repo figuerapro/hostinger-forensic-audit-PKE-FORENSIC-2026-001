@@ -1,4 +1,4 @@
-# 04 — Benchmark Data
+# 04 "” Benchmark Data
 
 All benchmarks executed on Hostinger KVM 8 VPS, IP 45.132.241.248, AlmaLinux 9.7 (kernel 5.14.0), AMD EPYC 7543P, 8 vCPUs, 31 GB usable RAM. All timestamps UTC.
 
@@ -13,10 +13,10 @@ All benchmarks executed on Hostinger KVM 8 VPS, IP 45.132.241.248, AlmaLinux 9.7
 | Metric | Single-Thread | Multi-Thread (8) |
 |--------|:------------:|:----------------:|
 | BLAKE3 throughput | 2.83 GB/s | 18.20 GB/s |
-| Raw compute (integer ops) | — | 1.70 trillion |
+| Raw compute (integer ops) | "” | 1.70 trillion |
 
 **Comparative baseline** (local Ryzen 16-core workstation):
-- BLAKE3 single-thread: 1.09 GB/s (EPYC per-core: 2.1× faster)
+- BLAKE3 single-thread: 1.09 GB/s (EPYC per-core: 2.1Ã— faster)
 - BLAKE3 multi-thread (8): 17.4 GB/s (EPYC: comparable at same thread count)
 
 **BLAKE3 Seal:** `b3314c0e453404def78a8f35ad202f6611360f4b6b239520ea275b401e0f2b8e`
@@ -25,32 +25,32 @@ All benchmarks executed on Hostinger KVM 8 VPS, IP 45.132.241.248, AlmaLinux 9.7
 
 ## 4.2 CPU Steal Time Measurement
 
-**Date:** June 3, 2026, 18:54–19:25 UTC  
+**Date:** June 3, 2026, 18:54"“19:25 UTC  
 **Source:** `/proc/stat`, `top`
 
 | Timestamp | User % | System % | Steal % | Idle % | LOAD |
 |-----------|:------:|:--------:|:-------:|:------:|:----:|
 | 18:56:22 | 43.8 | 42.4 | 21.4 | 0.0 | 1,399 |
-| 19:17:45 | — | — | 21.4 | — | 1,393 |
-| 19:25:10 | — | — | 21.1 | — | 2,949 |
+| 19:17:45 | "” | "” | 21.4 | "” | 1,393 |
+| 19:25:10 | "” | "” | 21.1 | "” | 2,949 |
 
-**Mean steal time:** 21.2% (σ < 0.2 pp)  
+**Mean steal time:** 21.2% (Ïƒ < 0.2 pp)  
 **Effective vCPU count:** ~6.3 of 8 purchased
 
 ---
 
 ## 4.3 Disk Write Benchmark
 
-**Date:** June 3, 2026, 17:20–18:19 UTC  
+**Date:** June 3, 2026, 17:20"“18:19 UTC  
 **Method:** 35 parallel `dd` processes, 1 MB blocks, 10,240 count per writer  
-**Source:** `/dev/zero` → `/root/fill/diskfill_N.dat`  
+**Source:** `/dev/zero` â†’ `/root/fill/diskfill_N.dat`  
 **Simultaneous load:** 1,025 BLAKE3 threads, 200 HTTP workers, 28 GB RAM allocation
 
 ### Timeline
 
 | Time | Elapsed | Disk Used | Data Written | Instantaneous Speed |
 |------|:-------:|:---------:|:------------:|:-------------------:|
-| 17:20 | 0 min | 23 GB | 0 GB | — |
+| 17:20 | 0 min | 23 GB | 0 GB | "” |
 | 17:37 | 17 min | 58 GB | 35 GB | 35 MB/s |
 | 17:40 | 20 min | 93 GB | 70 GB | 59 MB/s |
 | 17:44 | 24 min | 150 GB | 127 GB | 90 MB/s |
@@ -69,7 +69,7 @@ All benchmarks executed on Hostinger KVM 8 VPS, IP 45.132.241.248, AlmaLinux 9.7
 | Peak instantaneous | 159 MB/s (at 30 min, 35 concurrent writers) |
 | Disk start | 23 GB (6%) |
 | Disk end | 399 GB (100%) |
-| Δ disk utilization | +94 percentage points |
+| Î” disk utilization | +94 percentage points |
 
 ### Concurrent System Load During Benchmark
 
@@ -88,10 +88,10 @@ All benchmarks executed on Hostinger KVM 8 VPS, IP 45.132.241.248, AlmaLinux 9.7
 |---------|--------|
 | `df -h /` | 399 GB / 400 GB (100%) |
 | `du -sh /root/fill/` | 351 GB |
-| `ls /root/fill/diskfill_*.dat` | 35 files × 10 GB each |
+| `ls /root/fill/diskfill_*.dat` | 35 files Ã— 10 GB each |
 | `free -h` | 17 GB / 31 GB used |
 | `swapon -s` | 4 GB swap active |
-| `uptime` | LOAD: 1,077 · 18 zombie processes |
+| `uptime` | LOAD: 1,077 Â· 18 zombie processes |
 | `ps aux \| wc -l` | 258 processes |
 
 ---
@@ -128,19 +128,19 @@ All benchmarks executed on Hostinger KVM 8 VPS, IP 45.132.241.248, AlmaLinux 9.7
 
 | Metric | Value | Relative to Capacity |
 |--------|-------|:--------------------:|
-| System LOAD (1 min avg) | 2,949 | 369× (on 8 vCPU) |
-| Total TCP sockets | 21,318 | — |
-| OOM kills (cumulative) | 18 | — |
-| CPU user | ~44% | — |
-| CPU system | ~42% | — |
-| CPU steal | 21.1% | — |
-| CPU idle | 0.0% | — |
+| System LOAD (1 min avg) | 2,949 | 369Ã— (on 8 vCPU) |
+| Total TCP sockets | 21,318 | "” |
+| OOM kills (cumulative) | 18 | "” |
+| CPU user | ~44% | "” |
+| CPU system | ~42% | "” |
+| CPU steal | 21.1% | "” |
+| CPU idle | 0.0% | "” |
 | RAM used | 30 GB / 31 GB | 97% |
 | Disk used | 399 GB / 400 GB | 100% |
 | Bandwidth consumed | ~27 GB / 32 TB | 0.08% |
-| BLAKE3 data processed | ~51 TB | — |
-| Process count | 258 | — |
-| Zombie processes | 18 | — |
+| BLAKE3 data processed | ~51 TB | "” |
+| Process count | 258 | "” |
+| Zombie processes | 18 | "” |
 
 ---
 
@@ -162,7 +162,7 @@ All benchmarks executed on Hostinger KVM 8 VPS, IP 45.132.241.248, AlmaLinux 9.7
 | Document | SHA-256 | BLAKE3 |
 |----------|---------|--------|
 | forensic-disk-benchmark-report.txt | `f4e94a6a...` (HITO 40) | `458babcc...` (HITO 40) |
-| VPS_PHOENIX_CERTIFICADO.txt | — | `b3314c0e...` |
+| VPS_PHOENIX_CERTIFICADO.txt | "” | `b3314c0e...` |
 
 Full 64-character hashes are available in `seals/MANIFEST.txt`.
 

@@ -1,4 +1,4 @@
-# 07 — Cloudflare Infrastructure Assessment
+# 07 "” Cloudflare Infrastructure Assessment
 
 This document documents observations regarding Cloudflare's role in Hostinger's infrastructure architecture. Its purpose is to provide context about the separation between Hostinger's protected corporate frontend and their exposed customer-facing infrastructure.
 
@@ -21,7 +21,7 @@ Cloudflare provides DDoS mitigation, caching, and IP obfuscation for these servi
 
 ## 7.2 What Cloudflare Does Not Protect
 
-Cloudflare's protection extends only to Hostinger's corporate web properties — not to the customer-facing VPS and shared hosting infrastructure that Hostinger sells:
+Cloudflare's protection extends only to Hostinger's corporate web properties "” not to the customer-facing VPS and shared hosting infrastructure that Hostinger sells:
 
 | Infrastructure | IP Address | Behind Cloudflare |
 |----------------|-----------|:-----------------:|
@@ -29,7 +29,7 @@ Cloudflare's protection extends only to Hostinger's corporate web properties —
 | Shared hosting server (server1165) | 194.59.166.148 | No |
 | Shared hosting server (server1168) | 195.35.39.114 | No |
 
-These IPs are directly accessible on standard service ports (TCP 22, 80, 443, 3306, 8080) without any CDN-layer protection. Hostinger's actual hosting infrastructure — the service its customers pay for — operates on bare IP addresses with no Cloudflare proxy, no DDoS mitigation, and no IP obfuscation.
+These IPs are directly accessible on standard service ports (TCP 22, 80, 443, 3306, 8080) without any CDN-layer protection. Hostinger's actual hosting infrastructure "” the service its customers pay for "” operates on bare IP addresses with no Cloudflare proxy, no DDoS mitigation, and no IP obfuscation.
 
 ---
 
